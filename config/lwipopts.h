@@ -83,4 +83,15 @@
 /*----- Default value in ETH configuration 1524 -----*/
 #define ETH_RX_BUFFER_SIZE 1536
 
+// Checksum options - All software
+#define CHECKSUM_GEN_IP                 1
+#define CHECKSUM_GEN_UDP                1
+#define CHECKSUM_GEN_TCP                1
+#define CHECKSUM_GEN_ICMP               1
+#define CHECKSUM_CHECK_IP               1
+#define CHECKSUM_CHECK_UDP              1
+#define CHECKSUM_CHECK_TCP              1
+#define CHECKSUM_CHECK_ICMP             1
+
+
 #endif /* CONFIG_LWIPOPTS_H_ */

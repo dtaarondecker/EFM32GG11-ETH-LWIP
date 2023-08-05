@@ -2,19 +2,24 @@
 #include "em_gpio.h"
 #include "em_device.h"
 #include "em_cmu.h"
+#include "sl_assert.h"
+#include <string.h>
 
 // LWIP Includes
 #include "lwip/opt.h"
 #include "lwip/timeouts.h"
 #include "lwip/tcpip.h"
+#include "lwip/etharp.h"
 
 // MICRIUM Includes
 #include "os.h"
 #include <rtos_description.h>
-#include "cpu_cache.h"
 
-#define RX_DESCRIPTOR_QUEUE_SIZE 5
-#define TX_DESCRIPTOR_QUEUE_SIZE 12
+
+#define RX_DESCRIPTOR_QUEUE_SIZE      5
+#define TX_DESCRIPTOR_QUEUE_SIZE      12
+#define ETH_RX_BUFFER_CNT             12U
+#define THREADING_CONFIG_RX_TASK_SIZE 600
 
 // Maximum size of an ethernet frame (1518) and then align to 32 bits (1536)
 // The DMA engine exepcts the address words to point to 32 bit boundaries.
@@ -23,11 +28,29 @@
 // Function to setup the GPIO pins for ETH
 static void ETH_GPIOInitalize(void);
 
+// Function to enable ETH interrupts
+static void ETH_IRQEnable(void);
+
 // Function to read the current link state from the phy
 static uint8_t ETH_GetPhyLinkState(void);
 
 // Function to get LWIP running
 static void LWIP_Initalize(void);
+
+// Function used to free allocations of our custom pbuf
+static void ETH_PbufFree(struct pbuf *p);
+
+// Function to send frames via ETH
+err_t ETH_Output(struct netif *netif, struct pbuf *p);
+
+// Function to recieve frames from ETH
+void ETH_RXHandler(void* param);
+
+// Function used a call back during netif creation
+err_t Eth_InitalizeInternetInterface(struct netif *netif);
+
+// The LWIP netif used for access to the internet
+struct netif internet_netif;
 
 // Create the received network data buffers
 static uint8_t received_network_data_buffer[RX_DESCRIPTOR_QUEUE_SIZE][NET_IF_ETHER_FRAME_MAX_SIZE];
@@ -44,34 +67,46 @@ typedef struct dma_descriptor {
 typedef struct dma_descriptor_list {
   dma_descriptor_t ReceiveBufferQueues[RX_DESCRIPTOR_QUEUE_SIZE];
   dma_descriptor_t TransmitBufferQueues[TX_DESCRIPTOR_QUEUE_SIZE];
-  dma_descriptor_t *ReceiveBufferQueueStart;
-  dma_descriptor_t *ReceiveBufferQueueCur;
-  dma_descriptor_t *ReceiveBufferQueueEnd;
-  dma_descriptor_t *TransmitBufferQueueStart;
-  dma_descriptor_t *TransmitBufferQueueCur;
-  dma_descriptor_t *TransmitBufferQueueEnd;
-  dma_descriptor_t *TransmitBufferQueueAcked;
 } dma_descriptor_list_t;
-
-// Create the DMA descriptor list by declaring it here
-// Again this could be done dynamically if required.
-static dma_descriptor_list_t dma_descriptor_list;
 
 // Define a custom PBUF struct
 typedef struct
 {
   struct pbuf_custom pbuf_custom;
-  dma_descriptor_t dma_descriptor;
+  uint32_t dma_descriptor_index;
 } RxBuff_t;
 
+// Create the DMA descriptor list by declaring it here
+// Again this could be done dynamically if required.
+static dma_descriptor_list_t dma_descriptor_list;
+
 // Declare the LWIP Memory pool using our custom PBUF
-#define ETH_RX_BUFFER_CNT             12U // Holds up to 12 buffers
 LWIP_MEMPOOL_DECLARE(RX_POOL, ETH_RX_BUFFER_CNT, sizeof(RxBuff_t), "Zero-copy RX PBUF pool");
 
+// Semaphore used to signal RX thread that a packet is available
+static OS_SEM rx_semaphore;
+
+// Specify a MAC address. This would usually be read from NVM but
+// that is out of scope of this demo.
+static uint8_t mac_address[6] = {0xE9, 0x2C, 0x31, 0x0A, 0x89, 0x9f};
+
+// Used to hold the stack for the RX task
+static CPU_STK rx_task_stk[THREADING_CONFIG_RX_TASK_SIZE];
+
+// Used to hold the control block for the RX task
+static OS_TCB  rx_task_tcb;
 
 // Called to initialize everything required for Ethernet
 void Eth_Initalize()
 {
+  RTOS_ERR err;
+
+  // Initialize the RX POOL
+  LWIP_MEMPOOL_INIT(RX_POOL);
+
+  // Create the semaphore that will be used to signal that a frame was received to the RX thread
+  OSSemCreate(&rx_semaphore, "ETH RX Sem", 0, &err);
+
   // Enable the High Frequency Periphrial Clocks
   CMU_ClockEnable(cmuClock_HFPER, true);
   // Enable the GPIO clock
@@ -94,11 +129,6 @@ void Eth_Initalize()
   // Enable the ETH clocks and set RMII mode
   ETH->CTRL = ETH_CTRL_GBLCLKEN | ETH_CTRL_MIISEL_RMII;
 
-  // Initialize the receive descriptor pointers
-  dma_descriptor_list.ReceiveBufferQueueStart = &dma_descriptor_list.ReceiveBufferQueues[0];
-  dma_descriptor_list.ReceiveBufferQueueCur = &dma_descriptor_list.ReceiveBufferQueues[0];
-  dma_descriptor_list.ReceiveBufferQueueEnd = &dma_descriptor_list.ReceiveBufferQueues[RX_DESCRIPTOR_QUEUE_SIZE - 1];
-
   for(int i = 0; i < RX_DESCRIPTOR_QUEUE_SIZE; i++){
       // Set the address in the descriptor list to the address of the buffer
       dma_descriptor_list.ReceiveBufferQueues[i].addr = (uint32_t) &received_network_data_buffer[i][0];
@@ -109,15 +139,6 @@ void Eth_Initalize()
   // Set the WRAP bit on the last descriptor
   dma_descriptor_list.ReceiveBufferQueues[RX_DESCRIPTOR_QUEUE_SIZE - 1].addr |= 0x02;
 
-  // Invalidate DCACHE around network buffer
-  CPU_DCACHE_RANGE_FLUSH(&received_network_data_buffer, NET_IF_ETHER_FRAME_MAX_SIZE * RX_DESCRIPTOR_QUEUE_SIZE)
-
-  // Initialize the transmit descriptor pointers
-  dma_descriptor_list.TransmitBufferQueueStart = &dma_descriptor_list.TransmitBufferQueues[0];
-  dma_descriptor_list.TransmitBufferQueueCur = &dma_descriptor_list.TransmitBufferQueues[0];
-  dma_descriptor_list.TransmitBufferQueueAcked = &dma_descriptor_list.TransmitBufferQueues[0];
-  dma_descriptor_list.TransmitBufferQueueEnd = &dma_descriptor_list.TransmitBufferQueues[TX_DESCRIPTOR_QUEUE_SIZE - 1];
-
   for(int i = 0; i < TX_DESCRIPTOR_QUEUE_SIZE; i++){
       // Set the used bit to 1
       /*
@@ -126,16 +147,11 @@ void Eth_Initalize()
        * before the buffer can be used again.
        *
        */
-
       dma_descriptor_list.TransmitBufferQueues[i].status = 0x80000000u;
   }
 
   // Set the WRAP bit on the last descriptor
   dma_descriptor_list.TransmitBufferQueues[TX_DESCRIPTOR_QUEUE_SIZE - 1].status |= 0x40000000u;
-
-  // Specify a MAC address. This would usually be read from NVM but
-  // that is out of scope of this demo.
-  uint8_t mac_address[6] = {0xE9, 0x2C, 0x31, 0x0A, 0x89, 0x9f};
 
   // Set the MAC address bottom bytes
   ETH->SPECADDR1BOTTOM = mac_address[0] << 0 | mac_address[1] << 8 |
@@ -147,7 +163,7 @@ void Eth_Initalize()
   // Set the phy wake-up time, for 100Base-TX this is typically less 32 us
   ETH->SYSWAKETIME = 100; // 100 = 32 us (See Reference Manual 40.5.20 ETH_SYSWAKETIME - System wake time)
 
-  // Enable interrupts for RX and TX complete
+  // Enable interrupts for RX complete
   ETH->IENS |= ETH_IENS_RXCMPLT | ETH_IENS_TXCMPLT;
 
   // Remove frame check sequence, enable unicast and multicast hashing
@@ -159,10 +175,10 @@ void Eth_Initalize()
   ETH->NETWORKCFG |= ETH_NETWORKCFG_FULLDUPLEX | ETH_NETWORKCFG_SPEED;
 
   // Set up the ETH DMA with the RX description queue start address
-  ETH->RXQPTR = (uint32_t) dma_descriptor_list.ReceiveBufferQueueStart;
+  ETH->RXQPTR = (uint32_t) &dma_descriptor_list.ReceiveBufferQueues[0];
 
   // Set up the ETH DMA with the TX description queue start address
-  ETH->TXQPTR = (uint32_t) dma_descriptor_list.TransmitBufferQueueStart;
+  ETH->TXQPTR = (uint32_t) &dma_descriptor_list.TransmitBufferQueues[0];
 
   // Enable transmitter and receiver
   ETH->NETWORKCTRL |= ETH_NETWORKCTRL_ENBRX |
@@ -175,10 +191,28 @@ void Eth_Initalize()
 
   }
 
+  // Create the RX stack
+  OSTaskCreate(&rx_task_tcb,
+               "rx",
+               ETH_RXHandler,
+               NULL,
+               0,
+               &rx_task_stk[0],
+               (THREADING_CONFIG_RX_TASK_SIZE/10),
+               THREADING_CONFIG_RX_TASK_SIZE,
+               0,
+               0,
+               NULL,
+               OS_OPT_TASK_STK_CLR,
+               &err);
 
+  // Start LWIP
+  LWIP_Initalize();
 
-
+  // Enable interrupts
+  ETH_IRQEnable();
 }
+
 
 void ETH_GPIOInitalize(void){
   RTOS_ERR err;
@@ -198,16 +232,16 @@ void ETH_GPIOInitalize(void){
   ETH->ROUTEPEN = ETH_ROUTEPEN_RMIIPEN | ETH_ROUTEPEN_MDIOPEN;
 
   // Setup the MDIO pins
-    GPIO_PinModeSet(gpioPortD, 13, gpioModePushPull, 0);          // MDIO
-    GPIO_PinModeSet(gpioPortD, 14, gpioModePushPull, 0);          // MDC
+  GPIO_PinModeSet(gpioPortD, 13, gpioModePushPull, 0);          // MDIO
+  GPIO_PinModeSet(gpioPortD, 14, gpioModePushPull, 0);          // MDC
 
   // Enable the PHY on the STK
-    GPIO_PinModeSet(gpioPortI, 10, gpioModePushPull, 1);
-    GPIO_PinModeSet(gpioPortH, 7, gpioModePushPull, 1);
+  GPIO_PinModeSet(gpioPortI, 10, gpioModePushPull, 1);
+  GPIO_PinModeSet(gpioPortH, 7, gpioModePushPull, 1);
 
-    /* PHY address detection is being done early in the initialization sequence
-     * so we must wait for the PHY to be ready to answer to MDIO requests. */
-    OSTimeDly(30, OS_OPT_TIME_DLY, &err);
+  /* PHY address detection is being done early in the initialization sequence
+   * so we must wait for the PHY to be ready to answer to MDIO requests. */
+  OSTimeDly(30, OS_OPT_TIME_DLY, &err);
 }
 
 uint8_t ETH_GetPhyLinkState(void){
@@ -225,9 +259,190 @@ uint8_t ETH_GetPhyLinkState(void){
   return value;
 }
 
+void LWIP_Initalize(){
+  // Start the TCPIP thread
+  tcpip_init(NULL, NULL);
+
+  ip_addr_t ipaddr;
+  ip_addr_t netmask;
+  ip_addr_t gw;
+
+  // Set the IP address structs up for LWIP to consume
+  IP4_ADDR(&ipaddr, 10, 10, 4, 200);
+  IP4_ADDR(&netmask, 255, 255, 255, 0);
+  IP4_ADDR(&gw, 10, 10, 4, 1);
+
+  // Add the internet netif to LWIP. The initialization callback will be called during this function.
+  netif_add(&internet_netif, &ipaddr, &netmask, &gw, NULL, &Eth_InitalizeInternetInterface, &tcpip_input);
+
+  // Set the internet interface as the default
+  netif_set_default(&internet_netif);
+
+  // Set the interface as up (LWIP can use it)
+  netif_set_up(&internet_netif);
+}
+
+err_t Eth_InitalizeInternetInterface(struct netif *netif)
+{
+    // Set the name
+    memcpy(netif->name, "eth0", strlen("eth0"));
+    // Set the output function
+    netif->output = etharp_output;
+    // Set the link output function
+    netif->linkoutput = ETH_Output;
+
+    // Set the hardware address length
+    netif->hwaddr_len = 6;
+
+    // Copy the hardware address from the low level driver to the netif so that LWIP is aware of our mac address.
+    memcpy(netif->hwaddr, mac_address, 6);
+
+    // Set netif maximum transfer unit
+    netif->mtu = 1500;
+
+    // Accept broadcast address and ARP traffic
+    netif->flags |= NETIF_FLAG_BROADCAST | NETIF_FLAG_ETHARP;
+
+    // Set netif link flag
+    netif->flags |= NETIF_FLAG_LINK_UP;
+
+    return ERR_OK;
+}
+
+void ETH_PbufFree(struct pbuf *p)
+{
+  SYS_ARCH_DECL_PROTECT(old_level);
+  // Get the pbuf from the function args
+  RxBuff_t* pbuf = (RxBuff_t*)p;
+  // Protect from concurrent access
+  SYS_ARCH_PROTECT(old_level);
+  // We need to set the ownership flag back to 0 so the ETH module can use this buffer again
+  dma_descriptor_list.ReceiveBufferQueues[pbuf->dma_descriptor_index].addr &= (~(1 << 0));
+  // Release the pbuf back to the pool
+  LWIP_MEMPOOL_FREE(RX_POOL, pbuf);
+  // Stop protecting from concurrent access
+  SYS_ARCH_UNPROTECT(old_level);
+}
+
+void ETH_RXHandler(void* param){
+  (void) param;
+  RTOS_ERR err;
+  while(1){
+    // Wait for the ETH IRQ to tell us a frame is ready
+    OSSemPend(&rx_semaphore, 0, OS_OPT_PEND_BLOCKING, NULL, &err);
+
+    // Check all of our RX descriptors to see which ones contain valid frames
+    for(int i = 0; i < RX_DESCRIPTOR_QUEUE_SIZE; i++){
+        // Check if the buffer has been used by the DMA engine
+        if((dma_descriptor_list.ReceiveBufferQueues[i].addr & 0x01) > 0){
+            // Get a PBUF to use for frame reception
+            RxBuff_t* p  = (RxBuff_t*)LWIP_MEMPOOL_ALLOC(RX_POOL);
+            // Set the funciton that will be called when LWIP is done processing the frame
+            p->pbuf_custom.custom_free_function = ETH_PbufFree;
+            // Set the DMA descriptor that needs to be processed
+            p->dma_descriptor_index = i;
+            // Extract the length of the frame
+            uint32_t rx_len = dma_descriptor_list.ReceiveBufferQueues[i].status & (uint32_t)0x1FFF;
+            uint32_t addr_int = dma_descriptor_list.ReceiveBufferQueues[i].addr & 0xFFFFFFFC;
+            void* addr = (void*) addr_int;
+            // Create the pbuf reference structure that will be sent to LWIP
+            struct pbuf* lwip_pbuf = pbuf_alloced_custom(PBUF_RAW,
+                                                         rx_len,
+                                                         PBUF_REF,
+                                                         &p->pbuf_custom,
+                                                         addr,
+                                                         NET_IF_ETHER_FRAME_MAX_SIZE);
+            // Send the frame to LWIP
+            if(netif_input(lwip_pbuf, &internet_netif) != ERR_OK){
+                // Failed to process for some reason so we free the pbuf
+                pbuf_free(lwip_pbuf);
+            }
+        }
+    }
+  }
+}
+
+err_t ETH_Output(struct netif *netif, struct pbuf *p)
+{
+  LWIP_UNUSED_ARG(netif);
+  struct pbuf *q;
+  uint32_t dma_idx = 0;
+
+  // Theoretically, we should never had an ethernet frame expand past 1 pbuf or 1 dma descriptor.
+  // That is, LWIP is configured to always have a 1-to-1 relationship with Ethernet frames, pbufs and dma descriptors.
+
+  //Find the first available buffer
+  for(;(dma_descriptor_list.TransmitBufferQueues[dma_idx].status & 0x80000000) == 0; dma_idx++){
+
+  }
+
+  for(q = p; q != NULL; q = q->next) {
+      if((dma_descriptor_list.TransmitBufferQueues[dma_idx].status & 0x80000000) > 0){
+        // If not, we can use it
+        dma_descriptor_list.TransmitBufferQueues[dma_idx].addr = (uint32_t)q->payload;
+        // Create a variable that is used to build the status word for this descriptor
+        // Note: We are not clearing bits that should be zero because the status word starts with all cleared
+        // so make sure you look at table 40.10 to determine what bits should or should not be set
+        uint32_t status_word = 0x00;
+        // Check if we are at the last descriptor
+        if(dma_idx == TX_DESCRIPTOR_QUEUE_SIZE - 1){
+            // Last desciptor so we need to set the wrap bit
+            status_word |= (1 << 30);
+        }
+
+        // My use case has other network interfaces that are not capable of performing checksum generation and validation in hardware
+        // so for this demo, I have it disabled. You could configured the ETH module and LWIP to allows checksum generation in hardware to
+        // eek out a little more performance if necessary.
+        // If LWIP is configured to generate CRCs in software, then bit 16 needs to be set
+        status_word |= (1 << 16);
+
+        // Check if this is the last pbuf in the chain
+        if(q->next == NULL){
+            // Set the end of packet
+            status_word |= (1 << 15);
+        }
+
+        // Add the length of this part of the pbuf chain
+        status_word |= (q->len & 0x1FFF);
+
+        dma_descriptor_list.TransmitBufferQueues[dma_idx].status = status_word;
+
+        // Move to the next available buffer
+        if(dma_idx + 1 > TX_DESCRIPTOR_QUEUE_SIZE)
+        {
+            // Wrap around if we have to
+            dma_idx = 0;
+        }else{
+            // Move to the next available buffer
+            dma_idx++;
+        }
+      }else{
+          // Hmm, something aint right chief
+          EFM_ASSERT(0);
+          return ERR_MEM;
+      }
+  }
+
+  ETH->NETWORKCTRL |= ETH_NETWORKCTRL_TXSTRT;
+
+  return ERR_OK;
+}
+
 void ETH_IRQHandler(void)
 {
+  RTOS_ERR err;
+  if(ETH->IFCR & ETH_IFCR_RXCMPLT){
+     // A packet was received
+     OSSemPost(&rx_semaphore, OS_OPT_POST_FIFO, &err);
+  }
 
+  if(ETH->IFCR & ETH_IFCR_TXCMPLT){
+      for(int i =0; i < TX_DESCRIPTOR_QUEUE_SIZE; i++){
+          dma_descriptor_list.TransmitBufferQueues[i].status &= (~0x80000000);
+      }
+  }
+  // Clear pending ISRs
+  ETH->IFCR = 0xFFFFFF;
 }
 
 void ETH_IRQEnable(void)
