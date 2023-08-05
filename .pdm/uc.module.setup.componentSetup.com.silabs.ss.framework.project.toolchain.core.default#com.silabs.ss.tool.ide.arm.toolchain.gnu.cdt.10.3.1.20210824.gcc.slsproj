@@ -1,0 +1,636 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="uc.module.setup.componentSetup.com.silabs.ss.framework.project.toolchain.core.default#com.silabs.ss.tool.ide.arm.toolchain.gnu.cdt:10.3.1.20210824.gcc" propertyScope="project">
+  <folder name="gecko_sdk_4.3.1">
+    <folder name="platform">
+      <folder name="Device">
+        <folder name="SiliconLabs">
+          <folder name="EFM32GG11B">
+            <folder name="Source">
+              <file name="startup_efm32gg11b.c" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Source/startup_efm32gg11b.c"/>
+              <file name="system_efm32gg11b.c" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Source/system_efm32gg11b.c"/>
+            </folder>
+            <folder name="Include">
+              <file name="efm32gg11b820f2048gl192.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b820f2048gl192.h"/>
+              <file name="efm32gg11b_acmp.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_acmp.h"/>
+              <file name="efm32gg11b_adc.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_adc.h"/>
+              <file name="efm32gg11b_af_pins.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_af_pins.h"/>
+              <file name="efm32gg11b_af_ports.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_af_ports.h"/>
+              <file name="efm32gg11b_can.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_can.h"/>
+              <file name="efm32gg11b_can_mir.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_can_mir.h"/>
+              <file name="efm32gg11b_cmu.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_cmu.h"/>
+              <file name="efm32gg11b_cryotimer.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_cryotimer.h"/>
+              <file name="efm32gg11b_crypto.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_crypto.h"/>
+              <file name="efm32gg11b_csen.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_csen.h"/>
+              <file name="efm32gg11b_devinfo.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_devinfo.h"/>
+              <file name="efm32gg11b_dma_descriptor.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_dma_descriptor.h"/>
+              <file name="efm32gg11b_dmareq.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_dmareq.h"/>
+              <file name="efm32gg11b_ebi.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_ebi.h"/>
+              <file name="efm32gg11b_emu.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_emu.h"/>
+              <file name="efm32gg11b_eth.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_eth.h"/>
+              <file name="efm32gg11b_etm.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_etm.h"/>
+              <file name="efm32gg11b_fpueh.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_fpueh.h"/>
+              <file name="efm32gg11b_gpcrc.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_gpcrc.h"/>
+              <file name="efm32gg11b_gpio.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_gpio.h"/>
+              <file name="efm32gg11b_gpio_p.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_gpio_p.h"/>
+              <file name="efm32gg11b_i2c.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_i2c.h"/>
+              <file name="efm32gg11b_idac.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_idac.h"/>
+              <file name="efm32gg11b_lcd.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_lcd.h"/>
+              <file name="efm32gg11b_ldma.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_ldma.h"/>
+              <file name="efm32gg11b_ldma_ch.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_ldma_ch.h"/>
+              <file name="efm32gg11b_lesense.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_lesense.h"/>
+              <file name="efm32gg11b_lesense_buf.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_lesense_buf.h"/>
+              <file name="efm32gg11b_lesense_ch.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_lesense_ch.h"/>
+              <file name="efm32gg11b_lesense_st.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_lesense_st.h"/>
+              <file name="efm32gg11b_letimer.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_letimer.h"/>
+              <file name="efm32gg11b_leuart.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_leuart.h"/>
+              <file name="efm32gg11b_msc.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_msc.h"/>
+              <file name="efm32gg11b_pcnt.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_pcnt.h"/>
+              <file name="efm32gg11b_prs.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_prs.h"/>
+              <file name="efm32gg11b_prs_ch.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_prs_ch.h"/>
+              <file name="efm32gg11b_prs_signals.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_prs_signals.h"/>
+              <file name="efm32gg11b_qspi.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_qspi.h"/>
+              <file name="efm32gg11b_rmu.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_rmu.h"/>
+              <file name="efm32gg11b_romtable.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_romtable.h"/>
+              <file name="efm32gg11b_rtc.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_rtc.h"/>
+              <file name="efm32gg11b_rtc_comp.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_rtc_comp.h"/>
+              <file name="efm32gg11b_rtcc.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_rtcc.h"/>
+              <file name="efm32gg11b_rtcc_cc.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_rtcc_cc.h"/>
+              <file name="efm32gg11b_rtcc_ret.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_rtcc_ret.h"/>
+              <file name="efm32gg11b_sdio.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_sdio.h"/>
+              <file name="efm32gg11b_smu.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_smu.h"/>
+              <file name="efm32gg11b_timer.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_timer.h"/>
+              <file name="efm32gg11b_timer_cc.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_timer_cc.h"/>
+              <file name="efm32gg11b_trng.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_trng.h"/>
+              <file name="efm32gg11b_uart.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_uart.h"/>
+              <file name="efm32gg11b_usart.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_usart.h"/>
+              <file name="efm32gg11b_usb.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_usb.h"/>
+              <file name="efm32gg11b_usb_diep.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_usb_diep.h"/>
+              <file name="efm32gg11b_usb_doep.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_usb_doep.h"/>
+              <file name="efm32gg11b_usb_hc.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_usb_hc.h"/>
+              <file name="efm32gg11b_vdac.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_vdac.h"/>
+              <file name="efm32gg11b_vdac_opa.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_vdac_opa.h"/>
+              <file name="efm32gg11b_wdog.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_wdog.h"/>
+              <file name="efm32gg11b_wdog_pch.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/efm32gg11b_wdog_pch.h"/>
+              <file name="em_device.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/em_device.h"/>
+              <file name="system_efm32gg11b.h" linked="false" uri="studio:/sdk/platform/Device/SiliconLabs/EFM32GG11B/Include/system_efm32gg11b.h"/>
+            </folder>
+          </folder>
+        </folder>
+      </folder>
+      <folder name="common">
+        <folder name="inc">
+          <file name="sl_atomic.h" linked="false" uri="studio:/sdk/platform/common/inc/sl_atomic.h"/>
+          <file name="sl_cmsis_os2_common.h" linked="false" uri="studio:/sdk/platform/common/inc/sl_cmsis_os2_common.h"/>
+          <file name="sl_enum.h" linked="false" uri="studio:/sdk/platform/common/inc/sl_enum.h"/>
+          <file name="sl_assert.h" linked="false" uri="studio:/sdk/platform/common/inc/sl_assert.h"/>
+          <file name="sl_common.h" linked="false" uri="studio:/sdk/platform/common/inc/sl_common.h"/>
+          <file name="sl_slist.h" linked="false" uri="studio:/sdk/platform/common/inc/sl_slist.h"/>
+          <file name="sl_status.h" linked="false" uri="studio:/sdk/platform/common/inc/sl_status.h"/>
+        </folder>
+        <folder name="src">
+          <file name="sl_assert.c" linked="false" uri="studio:/sdk/platform/common/src/sl_assert.c"/>
+          <file name="sl_slist.c" linked="false" uri="studio:/sdk/platform/common/src/sl_slist.c"/>
+        </folder>
+        <folder name="toolchain">
+          <folder name="src">
+            <file name="sl_memory.c" linked="false" uri="studio:/sdk/platform/common/toolchain/src/sl_memory.c"/>
+          </folder>
+          <folder name="inc">
+            <file name="sl_memory_region.h" linked="false" uri="studio:/sdk/platform/common/toolchain/inc/sl_memory_region.h"/>
+            <file name="sl_memory.h" linked="false" uri="studio:/sdk/platform/common/toolchain/inc/sl_memory.h"/>
+            <file name="sl_gcc_preinclude.h" linked="false" uri="studio:/sdk/platform/common/toolchain/inc/sl_gcc_preinclude.h"/>
+          </folder>
+        </folder>
+      </folder>
+      <folder name="CMSIS">
+        <folder name="Core">
+          <folder name="Include">
+            <file name="cmsis_compiler.h" linked="false" uri="studio:/sdk/platform/CMSIS/Core/Include/cmsis_compiler.h"/>
+            <file name="cmsis_version.h" linked="false" uri="studio:/sdk/platform/CMSIS/Core/Include/cmsis_version.h"/>
+            <file name="tz_context.h" linked="false" uri="studio:/sdk/platform/CMSIS/Core/Include/tz_context.h"/>
+            <file name="cmsis_gcc.h" linked="false" uri="studio:/sdk/platform/CMSIS/Core/Include/cmsis_gcc.h"/>
+            <file name="core_cm4.h" linked="false" uri="studio:/sdk/platform/CMSIS/Core/Include/core_cm4.h"/>
+            <file name="mpu_armv7.h" linked="false" uri="studio:/sdk/platform/CMSIS/Core/Include/mpu_armv7.h"/>
+          </folder>
+        </folder>
+        <folder name="RTOS2">
+          <folder name="Include">
+            <file name="cmsis_os2.h" linked="false" uri="studio:/sdk/platform/CMSIS/RTOS2/Include/cmsis_os2.h"/>
+            <file name="os_tick.h" linked="false" uri="studio:/sdk/platform/CMSIS/RTOS2/Include/os_tick.h"/>
+          </folder>
+          <folder name="Source">
+            <file name="os_systick.c" linked="false" uri="studio:/sdk/platform/CMSIS/RTOS2/Source/os_systick.c"/>
+          </folder>
+        </folder>
+      </folder>
+      <folder name="service">
+        <folder name="device_init">
+          <folder name="inc">
+            <file name="sl_device_init_clocks.h" linked="false" uri="studio:/sdk/platform/service/device_init/inc/sl_device_init_clocks.h"/>
+            <file name="sl_device_init_dcdc.h" linked="false" uri="studio:/sdk/platform/service/device_init/inc/sl_device_init_dcdc.h"/>
+            <file name="sl_device_init_emu.h" linked="false" uri="studio:/sdk/platform/service/device_init/inc/sl_device_init_emu.h"/>
+            <file name="sl_device_init_hfxo.h" linked="false" uri="studio:/sdk/platform/service/device_init/inc/sl_device_init_hfxo.h"/>
+            <file name="sl_device_init_lfxo.h" linked="false" uri="studio:/sdk/platform/service/device_init/inc/sl_device_init_lfxo.h"/>
+            <file name="sl_device_init_nvic.h" linked="false" uri="studio:/sdk/platform/service/device_init/inc/sl_device_init_nvic.h"/>
+          </folder>
+          <folder name="src">
+            <file name="sl_device_init_dcdc_s1.c" linked="false" uri="studio:/sdk/platform/service/device_init/src/sl_device_init_dcdc_s1.c"/>
+            <file name="sl_device_init_emu_s1.c" linked="false" uri="studio:/sdk/platform/service/device_init/src/sl_device_init_emu_s1.c"/>
+            <file name="sl_device_init_hfxo_s1.c" linked="false" uri="studio:/sdk/platform/service/device_init/src/sl_device_init_hfxo_s1.c"/>
+            <file name="sl_device_init_lfxo_s1.c" linked="false" uri="studio:/sdk/platform/service/device_init/src/sl_device_init_lfxo_s1.c"/>
+            <file name="sl_device_init_nvic.c" linked="false" uri="studio:/sdk/platform/service/device_init/src/sl_device_init_nvic.c"/>
+          </folder>
+        </folder>
+        <folder name="system">
+          <folder name="src">
+            <file name="sl_system_init.c" linked="false" uri="studio:/sdk/platform/service/system/src/sl_system_init.c"/>
+            <file name="sl_system_kernel.c" linked="false" uri="studio:/sdk/platform/service/system/src/sl_system_kernel.c"/>
+          </folder>
+          <folder name="inc">
+            <file name="sl_system_init.h" linked="false" uri="studio:/sdk/platform/service/system/inc/sl_system_init.h"/>
+            <file name="sl_system_kernel.h" linked="false" uri="studio:/sdk/platform/service/system/inc/sl_system_kernel.h"/>
+          </folder>
+        </folder>
+        <folder name="sleeptimer">
+          <folder name="src">
+            <file name="sl_sleeptimer.c" linked="false" uri="studio:/sdk/platform/service/sleeptimer/src/sl_sleeptimer.c"/>
+            <file name="sl_sleeptimer_hal_rtcc.c" linked="false" uri="studio:/sdk/platform/service/sleeptimer/src/sl_sleeptimer_hal_rtcc.c"/>
+            <file name="sl_sleeptimer_hal_rtc.c" linked="false" uri="studio:/sdk/platform/service/sleeptimer/src/sl_sleeptimer_hal_rtc.c"/>
+            <file name="sl_sleeptimer_hal_timer.c" linked="false" uri="studio:/sdk/platform/service/sleeptimer/src/sl_sleeptimer_hal_timer.c"/>
+            <file name="sli_sleeptimer_hal.h" linked="false" uri="studio:/sdk/platform/service/sleeptimer/src/sli_sleeptimer_hal.h"/>
+          </folder>
+          <folder name="inc">
+            <file name="sl_sleeptimer.h" linked="false" uri="studio:/sdk/platform/service/sleeptimer/inc/sl_sleeptimer.h"/>
+            <file name="sli_sleeptimer.h" linked="false" uri="studio:/sdk/platform/service/sleeptimer/inc/sli_sleeptimer.h"/>
+          </folder>
+        </folder>
+      </folder>
+      <folder name="emlib">
+        <folder name="inc">
+          <file name="em_chip.h" linked="false" uri="studio:/sdk/platform/emlib/inc/em_chip.h"/>
+          <file name="em_cmu.h" linked="false" uri="studio:/sdk/platform/emlib/inc/em_cmu.h"/>
+          <file name="em_cmu_compat.h" linked="false" uri="studio:/sdk/platform/emlib/inc/em_cmu_compat.h"/>
+          <file name="sli_em_cmu.h" linked="false" uri="studio:/sdk/platform/emlib/inc/sli_em_cmu.h"/>
+          <file name="em_assert.h" linked="false" uri="studio:/sdk/platform/emlib/inc/em_assert.h"/>
+          <file name="em_bus.h" linked="false" uri="studio:/sdk/platform/emlib/inc/em_bus.h"/>
+          <file name="em_common.h" linked="false" uri="studio:/sdk/platform/emlib/inc/em_common.h"/>
+          <file name="em_ramfunc.h" linked="false" uri="studio:/sdk/platform/emlib/inc/em_ramfunc.h"/>
+          <file name="em_version.h" linked="false" uri="studio:/sdk/platform/emlib/inc/em_version.h"/>
+          <file name="em_core.h" linked="false" uri="studio:/sdk/platform/emlib/inc/em_core.h"/>
+          <file name="em_core_generic.h" linked="false" uri="studio:/sdk/platform/emlib/inc/em_core_generic.h"/>
+          <file name="em_emu.h" linked="false" uri="studio:/sdk/platform/emlib/inc/em_emu.h"/>
+          <file name="em_gpio.h" linked="false" uri="studio:/sdk/platform/emlib/inc/em_gpio.h"/>
+          <file name="em_msc.h" linked="false" uri="studio:/sdk/platform/emlib/inc/em_msc.h"/>
+          <file name="em_msc_compat.h" linked="false" uri="studio:/sdk/platform/emlib/inc/em_msc_compat.h"/>
+          <file name="em_rtc.h" linked="false" uri="studio:/sdk/platform/emlib/inc/em_rtc.h"/>
+          <file name="em_rtcc.h" linked="false" uri="studio:/sdk/platform/emlib/inc/em_rtcc.h"/>
+          <file name="em_system.h" linked="false" uri="studio:/sdk/platform/emlib/inc/em_system.h"/>
+          <file name="em_system_generic.h" linked="false" uri="studio:/sdk/platform/emlib/inc/em_system_generic.h"/>
+          <file name="em_timer.h" linked="false" uri="studio:/sdk/platform/emlib/inc/em_timer.h"/>
+        </folder>
+        <folder name="src">
+          <file name="em_cmu.c" linked="false" uri="studio:/sdk/platform/emlib/src/em_cmu.c"/>
+          <file name="em_core.c" linked="false" uri="studio:/sdk/platform/emlib/src/em_core.c"/>
+          <file name="em_emu.c" linked="false" uri="studio:/sdk/platform/emlib/src/em_emu.c"/>
+          <file name="em_gpio.c" linked="false" uri="studio:/sdk/platform/emlib/src/em_gpio.c"/>
+          <file name="em_msc.c" linked="false" uri="studio:/sdk/platform/emlib/src/em_msc.c"/>
+          <file name="em_rtc.c" linked="false" uri="studio:/sdk/platform/emlib/src/em_rtc.c"/>
+          <file name="em_rtcc.c" linked="false" uri="studio:/sdk/platform/emlib/src/em_rtcc.c"/>
+          <file name="em_system.c" linked="false" uri="studio:/sdk/platform/emlib/src/em_system.c"/>
+          <file name="em_timer.c" linked="false" uri="studio:/sdk/platform/emlib/src/em_timer.c"/>
+        </folder>
+      </folder>
+      <folder name="driver">
+        <folder name="leddrv">
+          <folder name="src">
+            <file name="sl_led.c" linked="false" uri="studio:/sdk/platform/driver/leddrv/src/sl_led.c"/>
+            <file name="sl_simple_led.c" linked="false" uri="studio:/sdk/platform/driver/leddrv/src/sl_simple_led.c"/>
+          </folder>
+          <folder name="inc">
+            <file name="sl_led.h" linked="false" uri="studio:/sdk/platform/driver/leddrv/inc/sl_led.h"/>
+            <file name="sl_simple_led.h" linked="false" uri="studio:/sdk/platform/driver/leddrv/inc/sl_simple_led.h"/>
+          </folder>
+        </folder>
+      </folder>
+      <folder name="micrium_os">
+        <folder name="common">
+          <folder name="source">
+            <folder name="kal">
+              <file name="kal_kernel.c" linked="false" uri="studio:/sdk/platform/micrium_os/common/source/kal/kal_kernel.c"/>
+              <file name="kal_priv.h" linked="false" uri="studio:/sdk/platform/micrium_os/common/source/kal/kal_priv.h"/>
+            </folder>
+            <folder name="lib">
+              <file name="lib_ascii.c" linked="false" uri="studio:/sdk/platform/micrium_os/common/source/lib/lib_ascii.c"/>
+              <file name="lib_str.c" linked="false" uri="studio:/sdk/platform/micrium_os/common/source/lib/lib_str.c"/>
+              <file name="lib_mem.c" linked="false" uri="studio:/sdk/platform/micrium_os/common/source/lib/lib_mem.c"/>
+              <file name="lib_str_priv.h" linked="false" uri="studio:/sdk/platform/micrium_os/common/source/lib/lib_str_priv.h"/>
+            </folder>
+            <folder name="logging">
+              <file name="logging.c" linked="false" uri="studio:/sdk/platform/micrium_os/common/source/logging/logging.c"/>
+              <file name="logging_chk_priv.h" linked="false" uri="studio:/sdk/platform/micrium_os/common/source/logging/logging_chk_priv.h"/>
+              <file name="logging_priv.h" linked="false" uri="studio:/sdk/platform/micrium_os/common/source/logging/logging_priv.h"/>
+            </folder>
+            <folder name="ring_buf">
+              <file name="ring_buf.c" linked="false" uri="studio:/sdk/platform/micrium_os/common/source/ring_buf/ring_buf.c"/>
+              <file name="ring_buf_priv.h" linked="false" uri="studio:/sdk/platform/micrium_os/common/source/ring_buf/ring_buf_priv.h"/>
+            </folder>
+            <folder name="rtos">
+              <file name="rtos_err_str.c" linked="false" uri="studio:/sdk/platform/micrium_os/common/source/rtos/rtos_err_str.c"/>
+              <file name="rtos_utils.c" linked="false" uri="studio:/sdk/platform/micrium_os/common/source/rtos/rtos_utils.c"/>
+              <file name="rtos_utils_priv.h" linked="false" uri="studio:/sdk/platform/micrium_os/common/source/rtos/rtos_utils_priv.h"/>
+            </folder>
+            <folder name="common">
+              <file name="common_priv.h" linked="false" uri="studio:/sdk/platform/micrium_os/common/source/common/common_priv.h"/>
+            </folder>
+            <folder name="preprocessor">
+              <file name="preprocessor_priv.h" linked="false" uri="studio:/sdk/platform/micrium_os/common/source/preprocessor/preprocessor_priv.h"/>
+            </folder>
+          </folder>
+          <folder name="include">
+            <file name="common.h" linked="false" uri="studio:/sdk/platform/micrium_os/common/include/common.h"/>
+            <file name="kal.h" linked="false" uri="studio:/sdk/platform/micrium_os/common/include/kal.h"/>
+            <file name="lib_ascii.h" linked="false" uri="studio:/sdk/platform/micrium_os/common/include/lib_ascii.h"/>
+            <file name="lib_def.h" linked="false" uri="studio:/sdk/platform/micrium_os/common/include/lib_def.h"/>
+            <file name="lib_math.h" linked="false" uri="studio:/sdk/platform/micrium_os/common/include/lib_math.h"/>
+            <file name="lib_mem.h" linked="false" uri="studio:/sdk/platform/micrium_os/common/include/lib_mem.h"/>
+            <file name="lib_str.h" linked="false" uri="studio:/sdk/platform/micrium_os/common/include/lib_str.h"/>
+            <file name="lib_utils.h" linked="false" uri="studio:/sdk/platform/micrium_os/common/include/lib_utils.h"/>
+            <file name="logging.h" linked="false" uri="studio:/sdk/platform/micrium_os/common/include/logging.h"/>
+            <file name="rtos_err.h" linked="false" uri="studio:/sdk/platform/micrium_os/common/include/rtos_err.h"/>
+            <file name="rtos_opt_def.h" linked="false" uri="studio:/sdk/platform/micrium_os/common/include/rtos_opt_def.h"/>
+            <file name="rtos_path.h" linked="false" uri="studio:/sdk/platform/micrium_os/common/include/rtos_path.h"/>
+            <file name="rtos_prio.h" linked="false" uri="studio:/sdk/platform/micrium_os/common/include/rtos_prio.h"/>
+            <file name="rtos_types.h" linked="false" uri="studio:/sdk/platform/micrium_os/common/include/rtos_types.h"/>
+            <file name="rtos_utils.h" linked="false" uri="studio:/sdk/platform/micrium_os/common/include/rtos_utils.h"/>
+            <file name="rtos_version.h" linked="false" uri="studio:/sdk/platform/micrium_os/common/include/rtos_version.h"/>
+            <file name="toolchains.h" linked="false" uri="studio:/sdk/platform/micrium_os/common/include/toolchains.h"/>
+          </folder>
+        </folder>
+        <folder name="cpu">
+          <folder name="source">
+            <file name="cpu_core.c" linked="false" uri="studio:/sdk/platform/micrium_os/cpu/source/cpu_core.c"/>
+          </folder>
+          <folder name="include">
+            <file name="cpu.h" linked="false" uri="studio:/sdk/platform/micrium_os/cpu/include/cpu.h"/>
+            <file name="cpu_cache.h" linked="false" uri="studio:/sdk/platform/micrium_os/cpu/include/cpu_cache.h"/>
+            <file name="cpu_def.h" linked="false" uri="studio:/sdk/platform/micrium_os/cpu/include/cpu_def.h"/>
+            <file name="cpu_port_sel.h" linked="false" uri="studio:/sdk/platform/micrium_os/cpu/include/cpu_port_sel.h"/>
+          </folder>
+        </folder>
+        <folder name="ports">
+          <folder name="source">
+            <folder name="gnu">
+              <file name="armv7m_cpu_a.S" linked="false" uri="studio:/sdk/platform/micrium_os/ports/source/gnu/armv7m_cpu_a.S"/>
+              <file name="armv7m_cpu_port.h" linked="false" uri="studio:/sdk/platform/micrium_os/ports/source/gnu/armv7m_cpu_port.h"/>
+              <file name="armv7m_os_cpu.h" linked="false" uri="studio:/sdk/platform/micrium_os/ports/source/gnu/armv7m_os_cpu.h"/>
+              <file name="armv7m_os_cpu_a.S" linked="false" uri="studio:/sdk/platform/micrium_os/ports/source/gnu/armv7m_os_cpu_a.S"/>
+              <file name="armv7m_os_cpu_c.c" linked="false" uri="studio:/sdk/platform/micrium_os/ports/source/gnu/armv7m_os_cpu_c.c"/>
+            </folder>
+            <folder name="generic">
+              <file name="arm_cpu_dwt_ts.c" linked="false" uri="studio:/sdk/platform/micrium_os/ports/source/generic/arm_cpu_dwt_ts.c"/>
+            </folder>
+          </folder>
+        </folder>
+        <folder name="kernel">
+          <folder name="source">
+            <file name="os_core.c" linked="false" uri="studio:/sdk/platform/micrium_os/kernel/source/os_core.c"/>
+            <file name="os_cfg_app.c" linked="false" uri="studio:/sdk/platform/micrium_os/kernel/source/os_cfg_app.c"/>
+            <file name="os_dbg.c" linked="false" uri="studio:/sdk/platform/micrium_os/kernel/source/os_dbg.c"/>
+            <file name="os_flag.c" linked="false" uri="studio:/sdk/platform/micrium_os/kernel/source/os_flag.c"/>
+            <file name="os_mon.c" linked="false" uri="studio:/sdk/platform/micrium_os/kernel/source/os_mon.c"/>
+            <file name="os_msg.c" linked="false" uri="studio:/sdk/platform/micrium_os/kernel/source/os_msg.c"/>
+            <file name="os_mutex.c" linked="false" uri="studio:/sdk/platform/micrium_os/kernel/source/os_mutex.c"/>
+            <file name="os_prio.c" linked="false" uri="studio:/sdk/platform/micrium_os/kernel/source/os_prio.c"/>
+            <file name="os_q.c" linked="false" uri="studio:/sdk/platform/micrium_os/kernel/source/os_q.c"/>
+            <file name="os_sem.c" linked="false" uri="studio:/sdk/platform/micrium_os/kernel/source/os_sem.c"/>
+            <file name="os_stat.c" linked="false" uri="studio:/sdk/platform/micrium_os/kernel/source/os_stat.c"/>
+            <file name="os_task.c" linked="false" uri="studio:/sdk/platform/micrium_os/kernel/source/os_task.c"/>
+            <file name="os_time.c" linked="false" uri="studio:/sdk/platform/micrium_os/kernel/source/os_time.c"/>
+            <file name="os_tmr.c" linked="false" uri="studio:/sdk/platform/micrium_os/kernel/source/os_tmr.c"/>
+            <file name="os_var.c" linked="false" uri="studio:/sdk/platform/micrium_os/kernel/source/os_var.c"/>
+            <file name="cmsis_os2.c" linked="false" uri="studio:/sdk/platform/micrium_os/kernel/source/cmsis_os2.c"/>
+            <file name="os_priv.h" linked="false" uri="studio:/sdk/platform/micrium_os/kernel/source/os_priv.h"/>
+          </folder>
+          <folder name="include">
+            <file name="os.h" linked="false" uri="studio:/sdk/platform/micrium_os/kernel/include/os.h"/>
+            <file name="os_port_sel.h" linked="false" uri="studio:/sdk/platform/micrium_os/kernel/include/os_port_sel.h"/>
+            <file name="os_trace.h" linked="false" uri="studio:/sdk/platform/micrium_os/kernel/include/os_trace.h"/>
+            <file name="os_type.h" linked="false" uri="studio:/sdk/platform/micrium_os/kernel/include/os_type.h"/>
+          </folder>
+        </folder>
+      </folder>
+    </folder>
+    <folder name="hardware">
+      <folder name="board">
+        <folder name="src">
+          <file name="sl_board_init.c" linked="false" uri="studio:/sdk/hardware/board/src/sl_board_init.c"/>
+          <file name="sl_board_control_gpio.c" linked="false" uri="studio:/sdk/hardware/board/src/sl_board_control_gpio.c"/>
+        </folder>
+        <folder name="inc">
+          <file name="sl_board_control.h" linked="false" uri="studio:/sdk/hardware/board/inc/sl_board_control.h"/>
+          <file name="sl_board_init.h" linked="false" uri="studio:/sdk/hardware/board/inc/sl_board_init.h"/>
+        </folder>
+      </folder>
+    </folder>
+    <folder name="util">
+      <folder name="third_party">
+        <folder name="lwip">
+          <folder name="lwip">
+            <folder name="src">
+              <folder name="api">
+                <file name="api_lib.c" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/api/api_lib.c"/>
+                <file name="api_msg.c" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/api/api_msg.c"/>
+                <file name="err.c" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/api/err.c"/>
+                <file name="if_api.c" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/api/if_api.c"/>
+                <file name="netbuf.c" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/api/netbuf.c"/>
+                <file name="netdb.c" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/api/netdb.c"/>
+                <file name="netifapi.c" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/api/netifapi.c"/>
+                <file name="sockets.c" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/api/sockets.c"/>
+                <file name="tcpip.c" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/api/tcpip.c"/>
+              </folder>
+              <folder name="core">
+                <folder name="ipv4">
+                  <file name="autoip.c" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/core/ipv4/autoip.c"/>
+                  <file name="dhcp.c" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/core/ipv4/dhcp.c"/>
+                  <file name="etharp.c" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/core/ipv4/etharp.c"/>
+                  <file name="icmp.c" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/core/ipv4/icmp.c"/>
+                  <file name="igmp.c" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/core/ipv4/igmp.c"/>
+                  <file name="ip4.c" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/core/ipv4/ip4.c"/>
+                  <file name="ip4_addr.c" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/core/ipv4/ip4_addr.c"/>
+                  <file name="ip4_frag.c" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/core/ipv4/ip4_frag.c"/>
+                </folder>
+                <file name="altcp.c" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/core/altcp.c"/>
+                <file name="altcp_alloc.c" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/core/altcp_alloc.c"/>
+                <file name="altcp_tcp.c" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/core/altcp_tcp.c"/>
+                <file name="def.c" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/core/def.c"/>
+                <file name="dns.c" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/core/dns.c"/>
+                <file name="inet_chksum.c" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/core/inet_chksum.c"/>
+                <file name="init.c" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/core/init.c"/>
+                <file name="ip.c" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/core/ip.c"/>
+                <file name="mem.c" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/core/mem.c"/>
+                <file name="memp.c" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/core/memp.c"/>
+                <file name="netif.c" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/core/netif.c"/>
+                <file name="pbuf.c" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/core/pbuf.c"/>
+                <file name="raw.c" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/core/raw.c"/>
+                <file name="stats.c" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/core/stats.c"/>
+                <file name="sys.c" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/core/sys.c"/>
+                <file name="tcp.c" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/core/tcp.c"/>
+                <file name="tcp_in.c" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/core/tcp_in.c"/>
+                <file name="tcp_out.c" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/core/tcp_out.c"/>
+                <file name="timeouts.c" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/core/timeouts.c"/>
+                <file name="udp.c" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/core/udp.c"/>
+              </folder>
+              <folder name="include">
+                <folder name="lwip">
+                  <folder name="priv">
+                    <file name="altcp_priv.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/priv/altcp_priv.h"/>
+                    <file name="api_msg.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/priv/api_msg.h"/>
+                    <file name="memp_priv.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/priv/memp_priv.h"/>
+                    <file name="memp_std.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/priv/memp_std.h"/>
+                    <file name="mem_priv.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/priv/mem_priv.h"/>
+                    <file name="nd6_priv.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/priv/nd6_priv.h"/>
+                    <file name="raw_priv.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/priv/raw_priv.h"/>
+                    <file name="sockets_priv.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/priv/sockets_priv.h"/>
+                    <file name="tcpip_priv.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/priv/tcpip_priv.h"/>
+                    <file name="tcp_priv.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/priv/tcp_priv.h"/>
+                  </folder>
+                  <folder name="prot">
+                    <file name="autoip.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/prot/autoip.h"/>
+                    <file name="dhcp.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/prot/dhcp.h"/>
+                    <file name="dhcp6.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/prot/dhcp6.h"/>
+                    <file name="dns.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/prot/dns.h"/>
+                    <file name="etharp.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/prot/etharp.h"/>
+                    <file name="ethernet.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/prot/ethernet.h"/>
+                    <file name="iana.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/prot/iana.h"/>
+                    <file name="icmp.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/prot/icmp.h"/>
+                    <file name="icmp6.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/prot/icmp6.h"/>
+                    <file name="ieee.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/prot/ieee.h"/>
+                    <file name="igmp.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/prot/igmp.h"/>
+                    <file name="ip.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/prot/ip.h"/>
+                    <file name="ip4.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/prot/ip4.h"/>
+                    <file name="ip6.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/prot/ip6.h"/>
+                    <file name="mld6.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/prot/mld6.h"/>
+                    <file name="nd6.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/prot/nd6.h"/>
+                    <file name="tcp.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/prot/tcp.h"/>
+                    <file name="udp.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/prot/udp.h"/>
+                  </folder>
+                  <file name="altcp.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/altcp.h"/>
+                  <file name="altcp_tcp.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/altcp_tcp.h"/>
+                  <file name="altcp_tls.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/altcp_tls.h"/>
+                  <file name="api.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/api.h"/>
+                  <file name="arch.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/arch.h"/>
+                  <file name="autoip.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/autoip.h"/>
+                  <file name="debug.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/debug.h"/>
+                  <file name="def.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/def.h"/>
+                  <file name="dhcp6.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/dhcp6.h"/>
+                  <file name="dhcp.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/dhcp.h"/>
+                  <file name="dns.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/dns.h"/>
+                  <file name="err.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/err.h"/>
+                  <file name="errno.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/errno.h"/>
+                  <file name="etharp.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/etharp.h"/>
+                  <file name="ethip6.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/ethip6.h"/>
+                  <file name="icmp6.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/icmp6.h"/>
+                  <file name="icmp.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/icmp.h"/>
+                  <file name="if_api.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/if_api.h"/>
+                  <file name="igmp.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/igmp.h"/>
+                  <file name="inet_chksum.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/inet_chksum.h"/>
+                  <file name="inet.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/inet.h"/>
+                  <file name="init.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/init.h"/>
+                  <file name="init.h.cmake.in" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/init.h.cmake.in"/>
+                  <file name="ip4_addr.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/ip4_addr.h"/>
+                  <file name="ip4_frag.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/ip4_frag.h"/>
+                  <file name="ip4.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/ip4.h"/>
+                  <file name="ip6_addr.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/ip6_addr.h"/>
+                  <file name="ip6_frag.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/ip6_frag.h"/>
+                  <file name="ip6.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/ip6.h"/>
+                  <file name="ip6_zone.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/ip6_zone.h"/>
+                  <file name="ip_addr.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/ip_addr.h"/>
+                  <file name="ip.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/ip.h"/>
+                  <file name="mem.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/mem.h"/>
+                  <file name="memp.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/memp.h"/>
+                  <file name="mld6.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/mld6.h"/>
+                  <file name="nd6.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/nd6.h"/>
+                  <file name="netbuf.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/netbuf.h"/>
+                  <file name="netdb.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/netdb.h"/>
+                  <file name="netifapi.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/netifapi.h"/>
+                  <file name="netif.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/netif.h"/>
+                  <file name="opt.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/opt.h"/>
+                  <file name="pbuf.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/pbuf.h"/>
+                  <file name="raw.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/raw.h"/>
+                  <file name="sio.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/sio.h"/>
+                  <file name="snmp.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/snmp.h"/>
+                  <file name="sockets.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/sockets.h"/>
+                  <file name="stats.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/stats.h"/>
+                  <file name="sys.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/sys.h"/>
+                  <file name="tcpbase.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/tcpbase.h"/>
+                  <file name="tcp.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/tcp.h"/>
+                  <file name="tcpip.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/tcpip.h"/>
+                  <file name="timeouts.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/timeouts.h"/>
+                  <file name="udp.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/lwip/udp.h"/>
+                </folder>
+                <folder name="netif">
+                  <folder name="ppp">
+                    <file name="ppp_opts.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/netif/ppp/ppp_opts.h"/>
+                    <file name="ppp_impl.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/netif/ppp/ppp_impl.h"/>
+                  </folder>
+                  <file name="etharp.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/netif/etharp.h"/>
+                  <file name="ethernet.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/include/netif/ethernet.h"/>
+                </folder>
+              </folder>
+              <folder name="netif">
+                <file name="ethernet.c" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip/src/netif/ethernet.c"/>
+              </folder>
+            </folder>
+          </folder>
+          <folder name="lwip-contrib">
+            <folder name="ports">
+              <folder name="micriumos">
+                <folder name="include">
+                  <folder name="arch">
+                    <file name="sys_arch.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip-contrib/ports/micriumos/include/arch/sys_arch.h"/>
+                    <file name="cc.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip-contrib/ports/micriumos/include/arch/cc.h"/>
+                    <file name="bpstruct.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip-contrib/ports/micriumos/include/arch/bpstruct.h"/>
+                    <file name="epstruct.h" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip-contrib/ports/micriumos/include/arch/epstruct.h"/>
+                  </folder>
+                </folder>
+                <file name="sys_arch.c" linked="false" uri="studio:/sdk/util/third_party/lwip/lwip-contrib/ports/micriumos/sys_arch.c"/>
+              </folder>
+            </folder>
+          </folder>
+        </folder>
+      </folder>
+    </folder>
+  </folder>
+  <file name="app.c" linked="false" uri="studio:/project/app.c"/>
+  <file name="main.c" linked="false" uri="studio:/project/main.c"/>
+  <file name="blink.c" linked="false" uri="studio:/project/blink.c"/>
+  <file name="app.h" linked="false" uri="studio:/project/app.h"/>
+  <file name="blink.h" linked="false" uri="studio:/project/blink.h"/>
+  <file name="readme.md" linked="false" uri="studio:/project/readme.md"/>
+  <includePath uri="studio:/project/"/>
+  <includePath uri="studio:/project/gecko_sdk_4.3.1/platform/Device/SiliconLabs/EFM32GG11B/Include"/>
+  <includePath uri="studio:/project/gecko_sdk_4.3.1/platform/common/inc"/>
+  <includePath uri="studio:/project/gecko_sdk_4.3.1/hardware/board/inc"/>
+  <includePath uri="studio:/project/gecko_sdk_4.3.1/platform/CMSIS/Core/Include"/>
+  <includePath uri="studio:/project/gecko_sdk_4.3.1/platform/CMSIS/RTOS2/Include"/>
+  <includePath uri="studio:/project/gecko_sdk_4.3.1/platform/service/device_init/inc"/>
+  <includePath uri="studio:/project/gecko_sdk_4.3.1/platform/emlib/inc"/>
+  <includePath uri="studio:/project/gecko_sdk_4.3.1/platform/driver/leddrv/inc"/>
+  <includePath uri="studio:/project/gecko_sdk_4.3.1/util/third_party/lwip/lwip/src/include"/>
+  <includePath uri="studio:/project/gecko_sdk_4.3.1/util/third_party/lwip/lwip-contrib/ports/micriumos/include"/>
+  <includePath uri="studio:/project/gecko_sdk_4.3.1/platform/micrium_os/common/source"/>
+  <includePath uri="studio:/project/gecko_sdk_4.3.1/platform/micrium_os/common/include"/>
+  <includePath uri="studio:/project/gecko_sdk_4.3.1/platform/micrium_os/cpu/include"/>
+  <includePath uri="studio:/project/gecko_sdk_4.3.1/platform/micrium_os/ports/source"/>
+  <includePath uri="studio:/project/gecko_sdk_4.3.1/platform/micrium_os"/>
+  <includePath uri="studio:/project/gecko_sdk_4.3.1/platform/micrium_os/kernel/source"/>
+  <includePath uri="studio:/project/gecko_sdk_4.3.1/platform/micrium_os/kernel/include"/>
+  <includePath uri="studio:/project/gecko_sdk_4.3.1/platform/common/toolchain/inc"/>
+  <includePath uri="studio:/project/gecko_sdk_4.3.1/platform/service/system/inc"/>
+  <includePath uri="studio:/project/gecko_sdk_4.3.1/platform/service/sleeptimer/inc"/>
+  <macroDefinition name="DEBUG_EFM"/>
+  <macroDefinition name="EFM32GG11B820F2048GL192"/>
+  <macroDefinition name="SL_BOARD_NAME" value="&quot;BRD2204C&quot;"/>
+  <macroDefinition name="SL_BOARD_REV" value="&quot;A02&quot;"/>
+  <macroDefinition name="SL_COMPONENT_CATALOG_PRESENT"/>
+  <libraryFile name="gcc"/>
+  <libraryFile name="c"/>
+  <libraryFile name="m"/>
+  <libraryFile name="nosys"/>
+  <toolOption toolId="toolOption.uc.toolchain" optionId="toolOption.uc.toolchain.cpu" value="cortex-m4"/>
+  <toolOption toolId="toolOption.uc.toolchain" optionId="toolOption.uc.toolchain.fpu" value="fpv4-sp"/>
+  <toolOption toolId="toolOption.uc.toolchain" optionId="toolOption.uc.toolchain.float_abi" value="softfp"/>
+  <toolOption toolId="toolOption.uc.compiler" optionId="toolOption.uc.compiler.preinclude">
+    <toolListOption value="sl_gcc_preinclude.h"/>
+  </toolOption>
+  <toolOption toolId="toolOption.uc.assembler" optionId="toolOption.uc.assembler.preinclude">
+    <toolListOption value="sl_gcc_preinclude.h"/>
+  </toolOption>
+  <toolOption toolId="toolOption.uc.linker" optionId="toolOption.uc.linker.linkerScript" value="$project/autogen/linkerfile.ld"/>
+  <toolOption toolId="toolOption.uc.compiler" optionId="toolOption.uc.compiler.function_sections" value="true"/>
+  <toolOption toolId="toolOption.uc.compiler" optionId="toolOption.uc.compiler.data_sections" value="true"/>
+  <toolOption toolId="toolOption.uc.linker" optionId="toolOption.uc.linker.nano_c_libs" value="true"/>
+  <toolOption toolId="toolOption.uc.compiler" optionId="toolOption.uc.compiler.omit_frame_pointer" value="true"/>
+  <toolOption toolId="toolOption.uc.compiler" optionId="toolOption.uc.compiler.no_exceptions" value="true"/>
+  <toolOption toolId="toolOption.uc.compiler" optionId="toolOption.uc.compiler.no_rtti" value="true"/>
+  <toolOption toolId="toolOption.uc.linker" optionId="toolOption.uc.linker.generateMapFile" value="true"/>
+  <toolOption toolId="toolOption.uc.compiler" optionId="toolOption.uc.compiler.c_standard" value="c99"/>
+  <toolOption toolId="toolOption.uc.compiler" optionId="toolOption.uc.compiler.cxx_standard" value="c++11"/>
+  <toolOption toolId="toolOption.uc.compiler" optionId="toolOption.uc.compiler.warnings.all" value="true"/>
+  <toolOption toolId="toolOption.uc.compiler" optionId="toolOption.uc.compiler.warnings.extra" value="true"/>
+  <toolOption toolId="toolOption.uc.compiler" optionId="toolOption.uc.compiler.warnings.pedantic" value="false"/>
+  <toolOption toolId="toolOption.uc.compiler" optionId="toolOption.uc.compiler.warnings.are_errors" value="false"/>
+  <toolOption toolId="toolOption.uc.compiler" optionId="toolOption.uc.compiler.optimization" value="size"/>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.assembler.base" optionId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.assembler.floatingpoint.type" value="floatingpoint.type.softfp"/>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.assembler.base" optionId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.assembler.floatingpoint.enable" value="true"/>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.compiler.base" optionId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.compiler.floatingpoint.type" value="floatingpoint.type.softfp"/>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.compiler.base" optionId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.compiler.floatingpoint.type" value="floatingpoint.type.softfp"/>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.compiler.base" optionId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.compiler.floatingpoint.enable" value="true"/>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.compiler.base" optionId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.compiler.floatingpoint.enable" value="true"/>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.linker.base" optionId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.linker.floatingpoint.type" value="floatingpoint.type.softfp"/>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.linker.base" optionId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.linker.floatingpoint.type" value="floatingpoint.type.softfp"/>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.linker.base" optionId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.linker.floatingpoint.enable" value="true"/>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.linker.base" optionId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.linker.floatingpoint.enable" value="true"/>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.assembler.base" optionId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.assembler.preinclude">
+    <toolListOption value="sl_gcc_preinclude.h"/>
+  </toolOption>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.compiler.base" optionId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.compiler.preinclude">
+    <toolListOption value="sl_gcc_preinclude.h"/>
+  </toolOption>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.compiler.base" optionId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.compiler.preinclude">
+    <toolListOption value="sl_gcc_preinclude.h"/>
+  </toolOption>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.compiler.base" optionId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.compiler.misc.dialect" value="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.compiler.misc.dialect.c99"/>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.compiler.base" optionId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.compiler.misc.dialect" value="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.compiler.misc.dialect.cpp0x"/>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.compiler.base" optionId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.compiler.no_rtti" value="true"/>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.compiler.base" optionId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.compiler.no_exceptions" value="true"/>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.compiler.base" optionId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.compiler.optimization.level" value="gnu.c.optimization.level.size"/>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.compiler.base" optionId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.compiler.optimization.level" value="gnu.cpp.compiler.optimization.level.size"/>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.compiler.base" optionId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.compiler.optimization.datasect" value="true"/>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.compiler.base" optionId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.compiler.optimization.datasect" value="true"/>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.compiler.base" optionId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.compiler.optimization.functionsects" value="true"/>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.compiler.base" optionId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.compiler.optimization.functionsects" value="true"/>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.compiler.base" optionId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.compiler.optimization.omitframepointer" value="true"/>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.compiler.base" optionId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.compiler.optimization.omitframepointer" value="true"/>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.compiler.base" optionId="gnu.c.compiler.option.warnings.allwarn" value="true"/>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.compiler.base" optionId="gnu.cpp.compiler.option.warnings.allwarn" value="true"/>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.compiler.base" optionId="gnu.c.compiler.option.warnings.extrawarn" value="true"/>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.compiler.base" optionId="gnu.cpp.compiler.option.warnings.extrawarn" value="true"/>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.compiler.base" optionId="gnu.c.compiler.option.warnings.toerrors" value="false"/>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.compiler.base" optionId="gnu.cpp.compiler.option.warnings.toerrors" value="false"/>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.compiler.base" optionId="gnu.c.compiler.option.warnings.pedantic" value="false"/>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.compiler.base" optionId="gnu.cpp.compiler.option.warnings.pedantic" value="false"/>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.toolchain.exe" optionId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.linker.script" value="${workspace_loc:/${ProjName}/autogen/linkerfile.ld}"/>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.toolchain.exe" optionId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.linker.usescript" value="true"/>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.linker.base" optionId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.linker.clibs" value="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.linker.nanospec"/>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.linker.base" optionId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.linker.clibs" value="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.linker.nanospec"/>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.linker.base" optionId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.linker.map" value="true"/>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.linker.base" optionId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.linker.map" value="true"/>
+  <toolOption toolId="studio.ide.project" optionId="device_opn" value="efm32gg11b820f2048gl192"/>
+  <toolOption toolId="makefile.arm.gcc.linker" optionId="misc">
+    <toolListOption value="-Wl,--gc-sections"/>
+  </toolOption>
+  <toolOption toolId="makefile.arm.gcc.compiler" optionId="misc">
+    <toolListOption value="--specs=nano.specs"/>
+    <toolListOption value="-g"/>
+  </toolOption>
+  <toolOption toolId="makefile.host.gcc.compiler" optionId="misc">
+    <toolListOption value="--specs=nano.specs"/>
+  </toolOption>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.compiler.base" optionId="com.silabs.gnu.c.compiler.option.misc.otherlist">
+    <toolListOption value="--specs=nano.specs"/>
+    <toolListOption value="-c"/>
+    <toolListOption value="-fmessage-length=0"/>
+  </toolOption>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.compiler.base" optionId="com.silabs.gnu.cpp.compiler.option.misc.otherlist">
+    <toolListOption value="--specs=nano.specs"/>
+    <toolListOption value="-c"/>
+    <toolListOption value="-fmessage-length=0"/>
+  </toolOption>
+  <toolOption toolId="makefile.arm.gcc.assembler" optionId="misc">
+    <toolListOption value="-x assembler-with-cpp"/>
+  </toolOption>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.linker.base" optionId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.linker.circulardependency" value="true"/>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.linker.base" optionId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.c.linker.nostdlibs" value="false"/>
+  <toolOption toolId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.linker" optionId="com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.cpp.linker.circulardependency" value="true"/>
+</project>

@@ -1,0 +1,47 @@
+# Silicon Labs Project Configuration Tools: slcp, v0, Component selection file.
+project_name: ethernet_demo
+label: ethernet_demo
+description: |
+  This example project shows how to blink an LED using a Micrium OS kernel task.
+category: Example|Platform
+filter:
+- name: Device Type
+  value: [SoC]
+- name: MCU
+  value: [32-bit MCU]
+- name: Project Difficulty
+  value: [Beginner]
+package: platform
+quality: production
+readme:
+- {path: readme.md}
+source:
+- {path: app.c}
+- {path: main.c}
+- {path: blink.c}
+tag: ['hardware:device:ram:18', 'hardware:component:led:1+']
+include:
+- path: ''
+  file_list:
+  - {path: app.h}
+  - {path: blink.h}
+sdk: {id: gecko_sdk, version: 4.3.1}
+toolchain_settings: []
+component:
+- {id: lwip_netif_ethernet}
+- {id: micriumos_kernel}
+- {id: sl_system}
+- {id: EFM32GG11B820F2048GL192}
+- {id: brd2204c}
+- {id: lwip_api}
+- {id: lwip_core}
+- instance: [led0]
+  id: simple_led
+- {id: device_init}
+- {id: sleeptimer}
+define:
+- {name: DEBUG_EFM}
+ui_hints:
+  highlight:
+  - {path: readme.md, focus: true}
+
