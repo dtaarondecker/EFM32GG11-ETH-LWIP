@@ -5,6 +5,7 @@
 #include "sl_assert.h"
 #include <string.h>
 #include "app_log.h"
+#include <stdio.h>
 // LWIP Includes
 #include "lwip/opt.h"
 #include "lwip/timeouts.h"
@@ -17,7 +18,7 @@
 #include <rtos_description.h>
 
 
-#define RX_DESCRIPTOR_QUEUE_SIZE      5
+#define RX_DESCRIPTOR_QUEUE_SIZE      12
 #define TX_DESCRIPTOR_QUEUE_SIZE      12
 #define ETH_RX_BUFFER_CNT             12U
 #define THREADING_CONFIG_RX_TASK_SIZE 600
@@ -100,7 +101,9 @@ static CPU_STK rx_task_stk[THREADING_CONFIG_RX_TASK_SIZE];
 // Used to hold the control block for the RX task
 static OS_TCB  rx_task_tcb;
 
-uint8_t tx_buf[1500] = {0x0};
+// Used to keep track of which descriptor the TX dma is pointing at
+uint32_t dma_idx = 0;
+
 // Called to initialize everything required for Ethernet
 void Eth_Initalize()
 {
@@ -179,7 +182,7 @@ void Eth_Initalize()
   // Set Full duplex 100Base_TX mode
   ETH->NETWORKCFG |= ETH_NETWORKCFG_FULLDUPLEX | ETH_NETWORKCFG_SPEED;
 
-  ETH->DMACFG = 0x011A0F10;
+  //ETH->DMACFG = 0x011A0F10;
 
   // Set up the ETH DMA with the RX description queue start address
   ETH->RXQPTR = (uint32_t) &dma_descriptor_list.ReceiveBufferQueues[0];
@@ -332,42 +335,6 @@ err_t Eth_InitalizeInternetInterface(struct netif *netif)
     return ERR_OK;
 }
 
-
-static struct udp_pcb* upcb;
-
-void ETH_DoTest(void)
-{
-    err_t err = ERR_OK;
-    ip4_addr_t destIPAddr;
-    upcb = udp_new();
-
-    if (upcb == NULL){
-        return;
-    }
-
-    IP4_ADDR(&destIPAddr,10,10,5,3);
-    upcb->local_port = 5001;
-
-    err = udp_connect(upcb,&destIPAddr,5001);
-    if (err != ERR_OK){
-        return;
-    }
-    struct pbuf *p;
-    uint8_t data[100]={0};
-    p = pbuf_alloc(PBUF_TRANSPORT,5, PBUF_POOL);
-    if (p != NULL)
-    {
-        /* copy data to pbuf */
-        pbuf_take(p, (char*)data, strlen((char*)data));
-
-        /* send udp data */
-        udp_send(upcb, p);
-
-        /* free pbuf */
-        pbuf_free(p);
-
-    }
-}
 void ETH_PbufFree(struct pbuf *p)
 {
   SYS_ARCH_DECL_PROTECT(old_level);
@@ -393,6 +360,9 @@ void ETH_RXHandler(void* param){
     for(int i = 0; i < RX_DESCRIPTOR_QUEUE_SIZE; i++){
         // Check if the buffer has been used by the DMA engine
         if((dma_descriptor_list.ReceiveBufferQueues[i].addr & 0x01) > 0){
+            // Uncomment the following for RX descriptor info
+            //printf("RX descriptor at index %d has data\r\n", i);
+
             // Get a PBUF to use for frame reception
             RxBuff_t* p  = (RxBuff_t*)LWIP_MEMPOOL_ALLOC(RX_POOL);
             // Set the funciton that will be called when LWIP is done processing the frame
@@ -420,19 +390,26 @@ void ETH_RXHandler(void* param){
   }
 }
 
+
 err_t ETH_Output(struct netif *netif, struct pbuf *p)
 {
   LWIP_UNUSED_ARG(netif);
   struct pbuf *q;
-  uint32_t dma_idx = 0;
+
 
   // Theoretically, we should never have an ethernet frame expand past 1 pbuf or 1 dma descriptor.
   // That is, LWIP is configured to always have a 1-to-1 relationship with Ethernet frames, pbufs and dma descriptors.
 
-  //Find the first available buffer
-  for(;(dma_descriptor_list.TransmitBufferQueues[dma_idx].status & 0x80000000) == 0; dma_idx++){
-
-  }
+  // Uncomment the following for TX descriptor debugging
+  /*
+    printf("Printing TX Descriptor status\r\n");
+    for(int i = 0; i < TX_DESCRIPTOR_QUEUE_SIZE; i++){
+        uint32_t status = dma_descriptor_list.TransmitBufferQueues[i].status;
+        printf("\tDMA Descriptor %d status: 0x%08X\r\n", i, status);
+    }
+    printf("\tTXQPTR: 0x%08X\r\n", ETH->TXQPTR);
+    printf("TX Descriptor Index: %lu, \r\n", dma_idx);
+ */
 
   for(q = p; q != NULL; q = q->next) {
       if((dma_descriptor_list.TransmitBufferQueues[dma_idx].status & 0x80000000) > 0){
@@ -444,13 +421,11 @@ err_t ETH_Output(struct netif *netif, struct pbuf *p)
         uint32_t status_word = 0x00;
         // Check if we are at the last descriptor
         if(dma_idx == TX_DESCRIPTOR_QUEUE_SIZE - 1){
-            // Last desciptor so we need to set the wrap bit
+            // Last descriptor so we need to set the wrap bit
             status_word |= (1 << 30);
+            printf("Last descriptor reached\r\n");
         }
 
-        // My use case has other network interfaces that are not capable of performing checksum generation and validation in hardware
-        // so for this demo, I have it disabled. You could configured the ETH module and LWIP to allows checksum generation in hardware to
-        // eek out a little more performance if necessary.
         // If LWIP is configured to generate CRCs in software, then bit 16 needs to be set
         //status_word |= (1 << 16);
 
@@ -466,7 +441,7 @@ err_t ETH_Output(struct netif *netif, struct pbuf *p)
         dma_descriptor_list.TransmitBufferQueues[dma_idx].status = status_word;
 
         // Move to the next available buffer
-        if(dma_idx + 1 > TX_DESCRIPTOR_QUEUE_SIZE)
+        if(dma_idx + 1 == TX_DESCRIPTOR_QUEUE_SIZE)
         {
             // Wrap around if we have to
             dma_idx = 0;
