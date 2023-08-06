@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="ASCII"?>
 <device:XMLDevice xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:device="http://www.silabs.com/ss/hwconfig/document/device.ecore" name="pin_tool.EFM32GG11B820F2048GL192" partId="mcu.arm.efm32.gg11.efm32gg11b820f2048gl192" contextId="com.silabs.sdk.stack.super:4.3.1._396030367">
   <mode name="DefaultMode">
+    <property object="DBG" propertyId="ABModule.selectedRequirement" value="dbg%T%SL_DEBUG%T%sl_debug_swo_config.h"/>
+    <property object="DBG" propertyId="ABPeripheral.included" value="true"/>
     <property object="DefaultMode" propertyId="mode.diagramLocation" value="100, 100"/>
+    <property object="PA9" propertyId="ABModule.selectedRequirement" value="gpio%T%SL_BOARD_ENABLE_DISPLAY%T%sl_board_control_config.h"/>
+    <property object="PA9" propertyId="pin.reserve" value="Reserved"/>
+    <property object="PB3" propertyId="ABModule.selectedRequirement" value="gpio%T%SL_BOARD_ENABLE_SENSOR_HALL%T%sl_board_control_config.h"/>
+    <property object="PB3" propertyId="pin.reserve" value="Reserved"/>
+    <property object="PD0" propertyId="ABModule.selectedRequirement" value="gpio%T%SL_BOARD_ENABLE_SENSOR_MICROPHONE%T%sl_board_control_config.h"/>
+    <property object="PD0" propertyId="pin.reserve" value="Reserved"/>
+    <property object="PE1" propertyId="ABModule.selectedRequirement" value="gpio%T%SL_BOARD_ENABLE_VCOM%T%sl_board_control_config.h"/>
+    <property object="PE1" propertyId="pin.reserve" value="Reserved"/>
+    <property object="PE7" propertyId="ABModule.selectedRequirement" value="gpio%T%SL_BOARD_ENABLE_MEMORY_SDCARD%T%sl_board_control_config.h"/>
+    <property object="PE7" propertyId="pin.reserve" value="Reserved"/>
+    <property object="PG13" propertyId="ABModule.selectedRequirement" value="gpio%T%SL_BOARD_ENABLE_MEMORY_QSPI%T%sl_board_control_config.h"/>
+    <property object="PG13" propertyId="pin.reserve" value="Reserved"/>
+    <property object="PH10" propertyId="ABModule.selectedRequirement" value="gpio%T%SL_SIMPLE_LED_LED0%T%sl_simple_led_led0_config.h"/>
+    <property object="PH10" propertyId="pin.reserve" value="Reserved"/>
+    <property object="PH12" propertyId="ABModule.selectedRequirement" value="gpio%T%SL_SIMPLE_LED_LED1%T%sl_simple_led_led1_config.h"/>
+    <property object="PH13" propertyId="pin.reserve" value="Reserved"/>
+    <property object="PORTIO" propertyId="portio.dbg.enable.swv" value="Enabled"/>
   </mode>
   <modeTransition>
     <property object="RESET &#x2192; DefaultMode" propertyId="modeTransition.source" value="RESET"/>

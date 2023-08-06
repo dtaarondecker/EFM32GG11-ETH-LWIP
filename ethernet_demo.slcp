@@ -28,14 +28,18 @@ include:
 sdk: {id: gecko_sdk, version: 4.3.1}
 toolchain_settings: []
 component:
+- {id: app_log}
 - {id: lwip_netif_ethernet}
 - {id: micriumos_kernel}
 - {id: sl_system}
+- instance: [vcom]
+  id: iostream_usart
 - {id: EFM32GG11B820F2048GL192}
+- {id: iostream_usart_core}
 - {id: brd2204c}
 - {id: lwip_api}
 - {id: lwip_core}
-- instance: [led0]
+- instance: [led0, led1]
   id: simple_led
 - {id: device_init}
 - {id: sleeptimer}

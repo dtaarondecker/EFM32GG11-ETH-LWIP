@@ -35,6 +35,17 @@
 // [CSEN]$
 
 // $[DBG]
+// DBG SWV on PF2
+#ifndef DBG_SWV_PORT                            
+#define DBG_SWV_PORT                             gpioPortF
+#endif
+#ifndef DBG_SWV_PIN                             
+#define DBG_SWV_PIN                              2
+#endif
+#ifndef DBG_SWV_LOC                             
+#define DBG_SWV_LOC                              0
+#endif
+
 // [DBG]$
 
 // $[EBI]

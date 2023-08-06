@@ -10,9 +10,15 @@
 #include "sl_device_init_emu.h"
 #include "sl_board_control.h"
 #include "sl_sleeptimer.h"
+#include "app_log.h"
+#include "sl_debug_swo.h"
+#include "sl_iostream_stdlib_config.h"
+#include "sl_iostream_init_usart_instances.h"
 #include "sl_simple_led_instances.h"
 #include "cpu.h"
 #include "cmsis_os2.h"
+#include "sl_iostream_init_instances.h"
+#include "sl_cos.h"
 
 void sl_platform_init(void)
 {
@@ -36,13 +42,17 @@ void sl_kernel_start(void)
 
 void sl_driver_init(void)
 {
+  sl_debug_swo_init();
   sl_simple_led_init_instances();
+  sl_cos_send_config();
 }
 
 void sl_service_init(void)
 {
   sl_board_configure_vcom();
   sl_sleeptimer_init();
+  sl_iostream_stdlib_disable_buffering();
+  sl_iostream_init_instances();
 }
 
 void sl_stack_init(void)
@@ -51,5 +61,11 @@ void sl_stack_init(void)
 
 void sl_internal_app_init(void)
 {
+  app_log_init();
+}
+
+void sl_iostream_init_instances(void)
+{
+  sl_iostream_usart_init_instances();
 }
 

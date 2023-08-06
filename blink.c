@@ -18,13 +18,13 @@
 #include "sl_simple_led.h"
 #include "sl_simple_led_instances.h"
 #include "os.h"
-
+#include "networking/eth.h"
 /*******************************************************************************
  *******************************   DEFINES   ***********************************
  ******************************************************************************/
 
 #ifndef LED_INSTANCE
-#define LED_INSTANCE      sl_led_led0
+#define LED_INSTANCE      sl_led_led1
 #endif
 
 #ifndef TOOGLE_DELAY_MS
@@ -32,7 +32,7 @@
 #endif
 
 #ifndef BLINK_TASK_STACK_SIZE
-#define BLINK_TASK_STACK_SIZE      96
+#define BLINK_TASK_STACK_SIZE      500
 #endif
 
 #ifndef BLINK_TASK_PRIO
@@ -86,6 +86,8 @@ void blink_init(void)
 static void blink_task(void *arg)
 {
   (void)&arg;
+
+
   do {
     OS_TICK os_ticks;
     RTOS_ERR err;

@@ -81,14 +81,18 @@
         <folder name="inc">
           <file name="sl_atomic.h" linked="false" uri="studio:/sdk/platform/common/inc/sl_atomic.h"/>
           <file name="sl_cmsis_os2_common.h" linked="false" uri="studio:/sdk/platform/common/inc/sl_cmsis_os2_common.h"/>
+          <file name="sli_cmsis_os2_ext_task_register.h" linked="false" uri="studio:/sdk/platform/common/inc/sli_cmsis_os2_ext_task_register.h"/>
           <file name="sl_enum.h" linked="false" uri="studio:/sdk/platform/common/inc/sl_enum.h"/>
           <file name="sl_assert.h" linked="false" uri="studio:/sdk/platform/common/inc/sl_assert.h"/>
           <file name="sl_common.h" linked="false" uri="studio:/sdk/platform/common/inc/sl_common.h"/>
+          <file name="sl_string.h" linked="false" uri="studio:/sdk/platform/common/inc/sl_string.h"/>
           <file name="sl_slist.h" linked="false" uri="studio:/sdk/platform/common/inc/sl_slist.h"/>
           <file name="sl_status.h" linked="false" uri="studio:/sdk/platform/common/inc/sl_status.h"/>
         </folder>
         <folder name="src">
+          <file name="sli_cmsis_os2_ext_task_register.c" linked="false" uri="studio:/sdk/platform/common/src/sli_cmsis_os2_ext_task_register.c"/>
           <file name="sl_assert.c" linked="false" uri="studio:/sdk/platform/common/src/sl_assert.c"/>
+          <file name="sl_string.c" linked="false" uri="studio:/sdk/platform/common/src/sl_string.c"/>
           <file name="sl_slist.c" linked="false" uri="studio:/sdk/platform/common/src/sl_slist.c"/>
         </folder>
         <folder name="toolchain">
@@ -123,6 +127,26 @@
           </folder>
         </folder>
       </folder>
+      <folder name="driver">
+        <folder name="debug">
+          <folder name="src">
+            <file name="sl_debug_swo.c" linked="false" uri="studio:/sdk/platform/driver/debug/src/sl_debug_swo.c"/>
+          </folder>
+          <folder name="inc">
+            <file name="sl_debug_swo.h" linked="false" uri="studio:/sdk/platform/driver/debug/inc/sl_debug_swo.h"/>
+          </folder>
+        </folder>
+        <folder name="leddrv">
+          <folder name="src">
+            <file name="sl_led.c" linked="false" uri="studio:/sdk/platform/driver/leddrv/src/sl_led.c"/>
+            <file name="sl_simple_led.c" linked="false" uri="studio:/sdk/platform/driver/leddrv/src/sl_simple_led.c"/>
+          </folder>
+          <folder name="inc">
+            <file name="sl_led.h" linked="false" uri="studio:/sdk/platform/driver/leddrv/inc/sl_led.h"/>
+            <file name="sl_simple_led.h" linked="false" uri="studio:/sdk/platform/driver/leddrv/inc/sl_simple_led.h"/>
+          </folder>
+        </folder>
+      </folder>
       <folder name="service">
         <folder name="device_init">
           <folder name="inc">
@@ -139,6 +163,22 @@
             <file name="sl_device_init_hfxo_s1.c" linked="false" uri="studio:/sdk/platform/service/device_init/src/sl_device_init_hfxo_s1.c"/>
             <file name="sl_device_init_lfxo_s1.c" linked="false" uri="studio:/sdk/platform/service/device_init/src/sl_device_init_lfxo_s1.c"/>
             <file name="sl_device_init_nvic.c" linked="false" uri="studio:/sdk/platform/service/device_init/src/sl_device_init_nvic.c"/>
+          </folder>
+        </folder>
+        <folder name="iostream">
+          <folder name="src">
+            <file name="sl_iostream.c" linked="false" uri="studio:/sdk/platform/service/iostream/src/sl_iostream.c"/>
+            <file name="sl_iostream_retarget_stdio.c" linked="false" uri="studio:/sdk/platform/service/iostream/src/sl_iostream_retarget_stdio.c"/>
+            <file name="sl_iostream_stdlib_config.c" linked="false" uri="studio:/sdk/platform/service/iostream/src/sl_iostream_stdlib_config.c"/>
+            <file name="sl_iostream_uart.c" linked="false" uri="studio:/sdk/platform/service/iostream/src/sl_iostream_uart.c"/>
+            <file name="sl_iostream_usart.c" linked="false" uri="studio:/sdk/platform/service/iostream/src/sl_iostream_usart.c"/>
+          </folder>
+          <folder name="inc">
+            <file name="sl_iostream.h" linked="false" uri="studio:/sdk/platform/service/iostream/inc/sl_iostream.h"/>
+            <file name="sl_iostream_stdlib_config.h" linked="false" uri="studio:/sdk/platform/service/iostream/inc/sl_iostream_stdlib_config.h"/>
+            <file name="sl_iostream_uart.h" linked="false" uri="studio:/sdk/platform/service/iostream/inc/sl_iostream_uart.h"/>
+            <file name="sli_iostream_uart.h" linked="false" uri="studio:/sdk/platform/service/iostream/inc/sli_iostream_uart.h"/>
+            <file name="sl_iostream_usart.h" linked="false" uri="studio:/sdk/platform/service/iostream/inc/sl_iostream_usart.h"/>
           </folder>
         </folder>
         <folder name="system">
@@ -165,6 +205,21 @@
           </folder>
         </folder>
       </folder>
+      <folder name="emdrv">
+        <folder name="dmadrv">
+          <folder name="src">
+            <file name="dmadrv.c" linked="false" uri="studio:/sdk/platform/emdrv/dmadrv/src/dmadrv.c"/>
+          </folder>
+          <folder name="inc">
+            <file name="dmadrv.h" linked="false" uri="studio:/sdk/platform/emdrv/dmadrv/inc/dmadrv.h"/>
+          </folder>
+        </folder>
+        <folder name="common">
+          <folder name="inc">
+            <file name="ecode.h" linked="false" uri="studio:/sdk/platform/emdrv/common/inc/ecode.h"/>
+          </folder>
+        </folder>
+      </folder>
       <folder name="emlib">
         <folder name="inc">
           <file name="em_chip.h" linked="false" uri="studio:/sdk/platform/emlib/inc/em_chip.h"/>
@@ -180,6 +235,7 @@
           <file name="em_core_generic.h" linked="false" uri="studio:/sdk/platform/emlib/inc/em_core_generic.h"/>
           <file name="em_emu.h" linked="false" uri="studio:/sdk/platform/emlib/inc/em_emu.h"/>
           <file name="em_gpio.h" linked="false" uri="studio:/sdk/platform/emlib/inc/em_gpio.h"/>
+          <file name="em_ldma.h" linked="false" uri="studio:/sdk/platform/emlib/inc/em_ldma.h"/>
           <file name="em_msc.h" linked="false" uri="studio:/sdk/platform/emlib/inc/em_msc.h"/>
           <file name="em_msc_compat.h" linked="false" uri="studio:/sdk/platform/emlib/inc/em_msc_compat.h"/>
           <file name="em_rtc.h" linked="false" uri="studio:/sdk/platform/emlib/inc/em_rtc.h"/>
@@ -187,29 +243,20 @@
           <file name="em_system.h" linked="false" uri="studio:/sdk/platform/emlib/inc/em_system.h"/>
           <file name="em_system_generic.h" linked="false" uri="studio:/sdk/platform/emlib/inc/em_system_generic.h"/>
           <file name="em_timer.h" linked="false" uri="studio:/sdk/platform/emlib/inc/em_timer.h"/>
+          <file name="em_usart.h" linked="false" uri="studio:/sdk/platform/emlib/inc/em_usart.h"/>
         </folder>
         <folder name="src">
           <file name="em_cmu.c" linked="false" uri="studio:/sdk/platform/emlib/src/em_cmu.c"/>
           <file name="em_core.c" linked="false" uri="studio:/sdk/platform/emlib/src/em_core.c"/>
           <file name="em_emu.c" linked="false" uri="studio:/sdk/platform/emlib/src/em_emu.c"/>
           <file name="em_gpio.c" linked="false" uri="studio:/sdk/platform/emlib/src/em_gpio.c"/>
+          <file name="em_ldma.c" linked="false" uri="studio:/sdk/platform/emlib/src/em_ldma.c"/>
           <file name="em_msc.c" linked="false" uri="studio:/sdk/platform/emlib/src/em_msc.c"/>
           <file name="em_rtc.c" linked="false" uri="studio:/sdk/platform/emlib/src/em_rtc.c"/>
           <file name="em_rtcc.c" linked="false" uri="studio:/sdk/platform/emlib/src/em_rtcc.c"/>
           <file name="em_system.c" linked="false" uri="studio:/sdk/platform/emlib/src/em_system.c"/>
           <file name="em_timer.c" linked="false" uri="studio:/sdk/platform/emlib/src/em_timer.c"/>
-        </folder>
-      </folder>
-      <folder name="driver">
-        <folder name="leddrv">
-          <folder name="src">
-            <file name="sl_led.c" linked="false" uri="studio:/sdk/platform/driver/leddrv/src/sl_led.c"/>
-            <file name="sl_simple_led.c" linked="false" uri="studio:/sdk/platform/driver/leddrv/src/sl_simple_led.c"/>
-          </folder>
-          <folder name="inc">
-            <file name="sl_led.h" linked="false" uri="studio:/sdk/platform/driver/leddrv/inc/sl_led.h"/>
-            <file name="sl_simple_led.h" linked="false" uri="studio:/sdk/platform/driver/leddrv/inc/sl_simple_led.h"/>
-          </folder>
+          <file name="em_usart.c" linked="false" uri="studio:/sdk/platform/emlib/src/em_usart.c"/>
         </folder>
       </folder>
       <folder name="micrium_os">
@@ -320,6 +367,17 @@
         </folder>
       </folder>
     </folder>
+    <folder name="app">
+      <folder name="common">
+        <folder name="util">
+          <folder name="app_log">
+            <file name="app_log.c" linked="false" uri="studio:/sdk/app/common/util/app_log/app_log.c"/>
+            <file name="app_log.h" linked="false" uri="studio:/sdk/app/common/util/app_log/app_log.h"/>
+            <file name="sl_app_log.h" linked="false" uri="studio:/sdk/app/common/util/app_log/sl_app_log.h"/>
+          </folder>
+        </folder>
+      </folder>
+    </folder>
     <folder name="hardware">
       <folder name="board">
         <folder name="src">
@@ -329,6 +387,16 @@
         <folder name="inc">
           <file name="sl_board_control.h" linked="false" uri="studio:/sdk/hardware/board/inc/sl_board_control.h"/>
           <file name="sl_board_init.h" linked="false" uri="studio:/sdk/hardware/board/inc/sl_board_init.h"/>
+        </folder>
+      </folder>
+      <folder name="driver">
+        <folder name="configuration_over_swo">
+          <folder name="src">
+            <file name="sl_cos.c" linked="false" uri="studio:/sdk/hardware/driver/configuration_over_swo/src/sl_cos.c"/>
+          </folder>
+          <folder name="inc">
+            <file name="sl_cos.h" linked="false" uri="studio:/sdk/hardware/driver/configuration_over_swo/inc/sl_cos.h"/>
+          </folder>
         </folder>
       </folder>
     </folder>
@@ -509,12 +577,18 @@
   <file name="readme.md" linked="false" uri="studio:/project/readme.md"/>
   <includePath uri="studio:/project/"/>
   <includePath uri="studio:/project/gecko_sdk_4.3.1/platform/Device/SiliconLabs/EFM32GG11B/Include"/>
+  <includePath uri="studio:/project/gecko_sdk_4.3.1/app/common/util/app_log"/>
   <includePath uri="studio:/project/gecko_sdk_4.3.1/platform/common/inc"/>
   <includePath uri="studio:/project/gecko_sdk_4.3.1/hardware/board/inc"/>
   <includePath uri="studio:/project/gecko_sdk_4.3.1/platform/CMSIS/Core/Include"/>
   <includePath uri="studio:/project/gecko_sdk_4.3.1/platform/CMSIS/RTOS2/Include"/>
+  <includePath uri="studio:/project/gecko_sdk_4.3.1/hardware/driver/configuration_over_swo/inc"/>
+  <includePath uri="studio:/project/gecko_sdk_4.3.1/platform/driver/debug/inc"/>
   <includePath uri="studio:/project/gecko_sdk_4.3.1/platform/service/device_init/inc"/>
+  <includePath uri="studio:/project/gecko_sdk_4.3.1/platform/emdrv/dmadrv/inc"/>
+  <includePath uri="studio:/project/gecko_sdk_4.3.1/platform/emdrv/common/inc"/>
   <includePath uri="studio:/project/gecko_sdk_4.3.1/platform/emlib/inc"/>
+  <includePath uri="studio:/project/gecko_sdk_4.3.1/platform/service/iostream/inc"/>
   <includePath uri="studio:/project/gecko_sdk_4.3.1/platform/driver/leddrv/inc"/>
   <includePath uri="studio:/project/gecko_sdk_4.3.1/util/third_party/lwip/lwip/src/include"/>
   <includePath uri="studio:/project/gecko_sdk_4.3.1/util/third_party/lwip/lwip-contrib/ports/micriumos/include"/>
@@ -532,6 +606,7 @@
   <macroDefinition name="EFM32GG11B820F2048GL192"/>
   <macroDefinition name="SL_BOARD_NAME" value="&quot;BRD2204C&quot;"/>
   <macroDefinition name="SL_BOARD_REV" value="&quot;A02&quot;"/>
+  <macroDefinition name="configNUM_SDK_THREAD_LOCAL_STORAGE_POINTERS" value="2"/>
   <macroDefinition name="SL_COMPONENT_CATALOG_PRESENT"/>
   <libraryFile name="gcc"/>
   <libraryFile name="c"/>

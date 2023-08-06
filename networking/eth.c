@@ -4,12 +4,13 @@
 #include "em_cmu.h"
 #include "sl_assert.h"
 #include <string.h>
-
+#include "app_log.h"
 // LWIP Includes
 #include "lwip/opt.h"
 #include "lwip/timeouts.h"
 #include "lwip/tcpip.h"
 #include "lwip/etharp.h"
+#include "lwip/udp.h"
 
 // MICRIUM Includes
 #include "os.h"
@@ -34,6 +35,9 @@ static void ETH_IRQEnable(void);
 // Function to read the current link state from the phy
 static uint8_t ETH_GetPhyLinkState(void);
 
+// Function to reset the phy over MDIO
+static void ETH_ResetPhy(void);
+
 // Function to get LWIP running
 static void LWIP_Initalize(void);
 
@@ -44,7 +48,7 @@ static void ETH_PbufFree(struct pbuf *p);
 err_t ETH_Output(struct netif *netif, struct pbuf *p);
 
 // Function to recieve frames from ETH
-void ETH_RXHandler(void* param);
+static void ETH_RXHandler(void* param);
 
 // Function used a call back during netif creation
 err_t Eth_InitalizeInternetInterface(struct netif *netif);
@@ -88,7 +92,7 @@ static OS_SEM rx_semaphore;
 
 // Specify a MAC address. This would usually be read from NVM but
 // that is out of scope of this demo.
-static uint8_t mac_address[6] = {0xE9, 0x2C, 0x31, 0x0A, 0x89, 0x9f};
+static uint8_t mac_address[6] = {0x20, 0x43, 0x65, 0x87, 0xA9, 0xCB};
 
 // Used to hold the stack for the RX task
 static CPU_STK rx_task_stk[THREADING_CONFIG_RX_TASK_SIZE];
@@ -96,6 +100,7 @@ static CPU_STK rx_task_stk[THREADING_CONFIG_RX_TASK_SIZE];
 // Used to hold the control block for the RX task
 static OS_TCB  rx_task_tcb;
 
+uint8_t tx_buf[1500] = {0x0};
 // Called to initialize everything required for Ethernet
 void Eth_Initalize()
 {
@@ -164,7 +169,7 @@ void Eth_Initalize()
   ETH->SYSWAKETIME = 100; // 100 = 32 us (See Reference Manual 40.5.20 ETH_SYSWAKETIME - System wake time)
 
   // Enable interrupts for RX complete
-  ETH->IENS |= ETH_IENS_RXCMPLT | ETH_IENS_TXCMPLT;
+  ETH->IENS |= ETH_IENS_RXCMPLT;
 
   // Remove frame check sequence, enable unicast and multicast hashing
   ETH->NETWORKCFG |= ETH_NETWORKCFG_FCSREMOVE |
@@ -173,6 +178,8 @@ void Eth_Initalize()
 
   // Set Full duplex 100Base_TX mode
   ETH->NETWORKCFG |= ETH_NETWORKCFG_FULLDUPLEX | ETH_NETWORKCFG_SPEED;
+
+  ETH->DMACFG = 0x011A0F10;
 
   // Set up the ETH DMA with the RX description queue start address
   ETH->RXQPTR = (uint32_t) &dma_descriptor_list.ReceiveBufferQueues[0];
@@ -184,6 +191,9 @@ void Eth_Initalize()
   ETH->NETWORKCTRL |= ETH_NETWORKCTRL_ENBRX |
     ETH_NETWORKCTRL_ENBTX |
     ETH_NETWORKCTRL_MANPORTEN;
+
+  // Reset the phy so it's in a known good configuration
+  ETH_ResetPhy();
 
   // Wait for the phy to get a network link
   while(ETH_GetPhyLinkState() == 0)
@@ -211,8 +221,8 @@ void Eth_Initalize()
 
   // Enable interrupts
   ETH_IRQEnable();
-}
 
+}
 
 void ETH_GPIOInitalize(void){
   RTOS_ERR err;
@@ -244,6 +254,19 @@ void ETH_GPIOInitalize(void){
   OSTimeDly(30, OS_OPT_TIME_DLY, &err);
 }
 
+void ETH_ResetPhy(void){
+  // Reset phy command
+  ETH->PHYMNGMNT = 0x50028000;
+  // Wait for the MDIO operation to complete by watching the flag
+  while((ETH->NETWORKSTATUS & ETH_NETWORKSTATUS_MANDONE) == 0)
+  {
+      __asm("nop");
+  }
+  RTOS_ERR err;
+  // Give the phy some time to reset
+  OSTimeDly(100, OS_OPT_TIME_DLY, &err);
+}
+
 uint8_t ETH_GetPhyLinkState(void){
   // This value is built using section 4.5.13 of the EFM32GG11 reference manual
   // It sets up a read from register 0x01 of the phy which is the basic status
@@ -268,7 +291,7 @@ void LWIP_Initalize(){
   ip_addr_t gw;
 
   // Set the IP address structs up for LWIP to consume
-  IP4_ADDR(&ipaddr, 10, 10, 4, 200);
+  IP4_ADDR(&ipaddr, 10, 10, 5, 200);
   IP4_ADDR(&netmask, 255, 255, 255, 0);
   IP4_ADDR(&gw, 10, 10, 4, 1);
 
@@ -309,6 +332,42 @@ err_t Eth_InitalizeInternetInterface(struct netif *netif)
     return ERR_OK;
 }
 
+
+static struct udp_pcb* upcb;
+
+void ETH_DoTest(void)
+{
+    err_t err = ERR_OK;
+    ip4_addr_t destIPAddr;
+    upcb = udp_new();
+
+    if (upcb == NULL){
+        return;
+    }
+
+    IP4_ADDR(&destIPAddr,10,10,5,3);
+    upcb->local_port = 5001;
+
+    err = udp_connect(upcb,&destIPAddr,5001);
+    if (err != ERR_OK){
+        return;
+    }
+    struct pbuf *p;
+    uint8_t data[100]={0};
+    p = pbuf_alloc(PBUF_TRANSPORT,5, PBUF_POOL);
+    if (p != NULL)
+    {
+        /* copy data to pbuf */
+        pbuf_take(p, (char*)data, strlen((char*)data));
+
+        /* send udp data */
+        udp_send(upcb, p);
+
+        /* free pbuf */
+        pbuf_free(p);
+
+    }
+}
 void ETH_PbufFree(struct pbuf *p)
 {
   SYS_ARCH_DECL_PROTECT(old_level);
@@ -330,7 +389,6 @@ void ETH_RXHandler(void* param){
   while(1){
     // Wait for the ETH IRQ to tell us a frame is ready
     OSSemPend(&rx_semaphore, 0, OS_OPT_PEND_BLOCKING, NULL, &err);
-
     // Check all of our RX descriptors to see which ones contain valid frames
     for(int i = 0; i < RX_DESCRIPTOR_QUEUE_SIZE; i++){
         // Check if the buffer has been used by the DMA engine
@@ -368,7 +426,7 @@ err_t ETH_Output(struct netif *netif, struct pbuf *p)
   struct pbuf *q;
   uint32_t dma_idx = 0;
 
-  // Theoretically, we should never had an ethernet frame expand past 1 pbuf or 1 dma descriptor.
+  // Theoretically, we should never have an ethernet frame expand past 1 pbuf or 1 dma descriptor.
   // That is, LWIP is configured to always have a 1-to-1 relationship with Ethernet frames, pbufs and dma descriptors.
 
   //Find the first available buffer
@@ -394,7 +452,7 @@ err_t ETH_Output(struct netif *netif, struct pbuf *p)
         // so for this demo, I have it disabled. You could configured the ETH module and LWIP to allows checksum generation in hardware to
         // eek out a little more performance if necessary.
         // If LWIP is configured to generate CRCs in software, then bit 16 needs to be set
-        status_word |= (1 << 16);
+        //status_word |= (1 << 16);
 
         // Check if this is the last pbuf in the chain
         if(q->next == NULL){
@@ -403,7 +461,7 @@ err_t ETH_Output(struct netif *netif, struct pbuf *p)
         }
 
         // Add the length of this part of the pbuf chain
-        status_word |= (q->len & 0x1FFF);
+        status_word |= ((q->len) & 0x3FFF);
 
         dma_descriptor_list.TransmitBufferQueues[dma_idx].status = status_word;
 
@@ -434,12 +492,6 @@ void ETH_IRQHandler(void)
   if(ETH->IFCR & ETH_IFCR_RXCMPLT){
      // A packet was received
      OSSemPost(&rx_semaphore, OS_OPT_POST_FIFO, &err);
-  }
-
-  if(ETH->IFCR & ETH_IFCR_TXCMPLT){
-      for(int i =0; i < TX_DESCRIPTOR_QUEUE_SIZE; i++){
-          dma_descriptor_list.TransmitBufferQueues[i].status &= (~0x80000000);
-      }
   }
   // Clear pending ISRs
   ETH->IFCR = 0xFFFFFF;
